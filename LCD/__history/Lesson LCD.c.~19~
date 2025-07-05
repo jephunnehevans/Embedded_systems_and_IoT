@@ -1,0 +1,22 @@
+#include <Lesson LCD.h>
+
+void main(){
+   output_a(0);
+   output_b(0);
+   set_tris_a(0b11111);
+   set_tris_b(0);
+   output_a(0);
+   output_b(0);
+   
+   lcd_init();
+   lcd_putc('\f');
+   lcd_gotoxy(1,1);
+//printf(lcd_putc "%s", colour);
+   lcd_putc(colour);
+   lcd_putc("c");
+   while(TRUE)
+   {
+      //TODO: User Code
+   }
+
+}

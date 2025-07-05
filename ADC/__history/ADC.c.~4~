@@ -1,0 +1,9 @@
+#include <ADC.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      measure_v = READ_ADC(AN0);
+      delay_ms(100);
+   }
+}

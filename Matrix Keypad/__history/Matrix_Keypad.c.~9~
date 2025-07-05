@@ -1,0 +1,21 @@
+#include <Matrix_Keypad.h>
+
+void main(){
+   sys_init();
+   
+   while(TRUE){
+      output_b(255); output_high(pin_b4);
+      if(!pin_b0){
+         while(!pin_b0); lcd_putc('1');
+      }
+      if(!pin_b1){
+         while(!pin_b1); lcd_putc('4');
+      }
+      if(!pin_b2){
+         while(!pin_b2); lcd_putc('7');
+      }
+      if(!pin_b3){
+         while(!pin_b3); lcd_putc('*');
+      }
+   }
+}

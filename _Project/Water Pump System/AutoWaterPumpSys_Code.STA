@@ -1,0 +1,70 @@
+
+ROM used:   1382/8192 (17%)
+            1382/8192 (17%) including unused fragments
+
+            1.2 Average locations per line
+            10.0 Average locations per statement
+
+RAM used:   13/368 (4%) at main() level
+            35/368 (10%) worst case
+
+Stack used: 6 worst case (6 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   18    16  12  AutoWaterPumpSys_Code.c
+   46    22  16  AutoWaterPumpSys_Code.h
+  620     0   0  ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F876A.h
+  456   100  72  ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+----- -----
+ 1140   138 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   2    1             @delay_ms1
+ Inline         3   760  4.5  lcd_read_byte
+0     37   3    2   262  3.7  lcd_read_nibble
+0     25   2    1   399  2.4  lcd_send_nibble
+0     67   5    3   415  3.7  lcd_send_byte
+ Inline         6   852  6.2  lcd_init
+0     18   1    4   208  6.3  lcd_gotoxy
+0     44   3    1   354  4.7  lcd_putc
+0    117   8    1   450  2.3  sys_init
+0      7   1    0             @const639
+0     86   6    4             @PSTRINGC7_625
+0      6   0    0             @const641
+0     11   1    0    48  1.1  Trig
+0    117   8   13             @MULFF
+0    204  15   14             @DIVFF
+0    186  13    4   409  4.0  MAIN
+0     31   2    2   149  2.5  @ITOF
+0      7   1    0             @const656
+0     89   6    5             @PSTRINGCN7_625
+ Inline         5             @FTOSD
+0     79   6   13             @DIV3232
+0    226  16   13             @PRINTF_L32D_625FPFPF
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               11
+    Statements              138
+    Comments                215
+    Volume (V)              6878
+    Difficulty (D)          39.8
+    Effort to implement (E) 274005
+    Time to implement (T)   4 hours, 14 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   8
+    Maintainability (MI)    123
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF  1378  666  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

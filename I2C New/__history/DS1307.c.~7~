@@ -1,0 +1,12 @@
+#include <DS1307.h>
+
+void main(){
+   sys_init();
+   lcd_cls();
+   printf(lcd_putc "writing...");
+   RTC_write(0b00110000,0b01010000,0b00001011,0b00000100,0b00000100,0b00000110,
+   0b00100101);
+   delay_ms(1000);
+   while(TRUE){
+   }
+}

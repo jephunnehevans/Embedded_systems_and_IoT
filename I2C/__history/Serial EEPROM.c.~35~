@@ -1,0 +1,54 @@
+#include <Serial EEPROM.h>
+
+void main(){
+   sys_init();
+   datastoreaddr = make16(read_eeprom(1),read_eeprom(0));
+   delay_ms(100);
+   if(datastoreaddr>65,000)datastoreaddr = 0;
+   while(TRUE){
+      temp = READ_ADC();
+      delay_ms(100);
+      
+      lcd_clear(); lcd_line(1);
+      printf(lcd_putc "Temp = %u %cC", temp, 223);
+      lcd_line(2);
+      printf(lcd_putc "Loc = %Lu", datastoreaddr);
+      
+      if(input(str_pin)){
+         while(input(str_pin));
+         lcd_clear(); lcd_line(1);
+         printf(lcd_putc "Storing ...");
+         i2c_eeprom_write(make8(datastoreaddr, 1), make8(datastoreaddr, 0), temp);
+         datastoreaddr++;
+         write_eeprom(mculadd, make8(datastoreaddr, 0));
+         delay_ms(100);
+         write_eeprom(mcuhadd, make8(datastoreaddr, 1));
+         delay_ms(100);
+      }
+      if(input(rcl_pin)){
+         while(input(rcl_pin));
+         lcd_clear(); lcd_line(1);
+         printf(lcd_putc "Reading from");
+         lcd_line(2);
+         printf(lcd_putc "EEPROM ...");
+         delay_ms(200);
+         for(x=0;x<datastoreaddr;x++){
+            lcd_clear(); lcd_line(1);
+            printf(lcd_putc "Temp = %u %cC", i2c_eeprom_read(make8(x, 1), make8(x, 0)), 223);
+            lcd_line(2);
+            printf(lcd_putc "Location %Lu", x);
+            delay_ms(3000);
+         }
+         
+//!         lcd_clear(); lcd_line(1);
+//!         printf(lcd_putc "Done ...");
+//!         delay_ms(1000);
+//!         
+//!         lcd_clear(); lcd_line(1);
+//!         printf(lcd_putc "Measure");
+//!         lcd_line(2);
+//!         printf(lcd_putc "Temperature ...");
+//!         delay_ms(1500);
+      }
+   }
+}

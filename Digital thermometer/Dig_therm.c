@@ -1,0 +1,9 @@
+#include <Dig_therm.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      showTemp(READ_ADC());
+      
+   }
+}

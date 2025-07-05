@@ -1,0 +1,452 @@
+#include <16F876A.h>
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG,PROTECT
+#use delay(crystal=4000000)
+#use i2c(master, sda=pin_c4, scl=pin_c3, fast=1000000)
+
+#define LCD_DATA_PORT getenv("SFR:PORTD")
+#define LCD_ENABLE_PIN  PIN_B3
+#define LCD_RS_PIN      PIN_B1
+#define LCD_RW_PIN      PIN_B2
+#define LCD_DATA4       PIN_B4
+#define LCD_DATA5       PIN_B5
+#define LCD_DATA6       PIN_B6
+#define LCD_DATA7       PIN_B7
+#include "lcd.c"
+
+unsigned int8 hr = 0, mn = 0, sc = 0;
+
+void lcd_cls(){
+   lcd_putc('\f');
+}
+
+void lcd_ln(unsigned int8 l){
+   lcd_gotoxy(1, l);
+}
+
+unsigned int8 toBCD(unsigned int8 num){
+   return ((num/10 << 4) | (num%10));
+}
+
+unsigned int8 fromBCD(unsigned int8 num){
+   return ((((0b11110000 & num) >> 4) * 10) + (0b00001111 & num));
+}
+
+
+void RTC_write(unsigned int8 addr, data){
+   i2c_start();
+   i2c_write(0xD0);
+   i2c_write(addr);
+   i2c_write(data);
+   i2c_stop();
+   delay_ms(5);
+}
+
+unsigned int8 RTC_read(unsigned int8 addr){
+unsigned int8 var = 0;
+   i2c_start();
+   i2c_write(0xD0);
+   i2c_write(addr);
+   
+   i2c_start();
+   i2c_write(0xD1);
+   
+   var = i2c_read(0);
+   delay_ms(5);
+   i2c_stop();
+   return var;
+}
+
+void print_time(){
+unsigned int8 h=0, m=0, s=0;
+   h = RTC_read(0x02);
+   m = fromBCD(RTC_read(0x01));
+   s = fromBCD(RTC_read(0x00) & 0b01111111);
+   if(h & 0b01000000){
+      if(h & 0b00100000){
+         h = fromBCD(0b00011111 & h);
+         printf(lcd_putc "%u:%u:%u PM", h, m, s);
+      }
+      else{
+         h = fromBCD(0b00011111 & h);
+         printf(lcd_putc "%u:%u:%u AM", h, m, s);
+      }
+   }
+   else{
+      h = fromBCD(h);
+      printf(lcd_putc "%u:%u:%u", h, m, s);
+   }
+}
+
+   ////set seconds
+unsigned int8 set_second(unsigned int1 only = 1, ret = 0){
+unsigned int8 v=0;
+   if(only) RTC_write(0x00, (0b10000000 | RTC_read(0x00)));
+   v = fromBCD(0b01111111 & RTC_read(0x00));
+   lcd_cls(); lcd_ln(1);
+   printf(lcd_putc "Set Second");
+   lcd_ln(2);
+   printf(lcd_putc "%u", v);
+   while(!input(pin_a4)){
+      if(input(pin_a3)){ //for increasing
+         while(input(pin_a3));
+         v++;
+      }
+      if(input(pin_a5)){ //for decreasing
+         while(input(pin_a5));
+         v--;
+      }
+      v %= 60;
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Set Second");
+      lcd_ln(2);
+      printf(lcd_putc "%u", v);
+      delay_ms(50);
+   }
+   while(input(pin_a4));
+   if(only) v = (0b01111111 & v);
+   
+   if(ret) return v;
+   else RTC_write(0x00, toBCD(v));
+}
+
+   ////set minutes
+unsigned int8 set_minute(unsigned int1 only = 1, ret = 0){
+unsigned int8 v=0;
+   if(only) RTC_write(0x00, (0b10000000 | RTC_read(0x00)));
+   v = fromBCD(RTC_read(0x01));
+   lcd_cls(); lcd_ln(1);
+   printf(lcd_putc "Set Minute");
+   lcd_ln(2);
+   printf(lcd_putc "%u", v);
+   while(!input(pin_a4)){
+      if(input(pin_a3)){ //for increasing
+         while(input(pin_a3));
+         v++;
+      }
+      if(input(pin_a5)){ //for decreasing
+         while(input(pin_a5));
+         v--;
+      }
+      v %= 60;
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Set Minute");
+      lcd_ln(2);
+      printf(lcd_putc "%u", v);
+      delay_ms(50);
+   }
+   while(input(pin_a4));
+   v = toBCD;
+   if(only) RTC_write(0x00, (0b01111111 & RTC_read(0x00)));
+   if(ret) return v;
+   else RTC_write(0x01, toBCD(v));
+}
+
+   ////set hour
+unsigned int8 set_hour(unsigned int1 only = 1, ret = 0){
+unsigned int8 v=0;
+   if(only) RTC_write(0x00, (0b10000000 | RTC_read(0x00)));
+   
+   ///set 12/24 hour
+   v = fromBCD(0b01000000 & RTC_read(0x02));//geting present mode
+   //changing v to binary
+   if(v==0) v=0;
+   else v=1;
+   //printing as 12 or 24
+   lcd_cls(); lcd_ln(1);
+   printf(lcd_putc "Set as 12/24Hour");
+   lcd_ln(2);
+   if(v) printf(lcd_putc "12");
+   else  printf(lcd_putc "24");
+   //Alowing to set 12 or 24 mode
+   while(!input(pin_a4) && !ret){
+      if(input(pin_a3)){ //for increasing
+         while(input(pin_a3));
+         v++;
+      }
+      if(input(pin_a5)){ //for decreasing
+         while(input(pin_a5));
+         v--;
+      }
+      v %= 2;
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Set as 12/24Hour");
+      lcd_ln(2);
+      if(v) printf(lcd_putc "12");
+      else  printf(lcd_putc "24");
+      delay_ms(50);
+   }
+   while(input(pin_a4));
+   
+   //if it is in 12 hour mode
+   if(v || ret){//Setting AM/PM
+      v = fromBCD(0b00100000 & RTC_read(0x02));
+      //chaning v to binary
+      if(v==0) v=0;
+      else v=1;
+      //printing the binary
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Set as AM/PM");
+      lcd_ln(2);
+      if(v) printf(lcd_putc "PM");
+      else  printf(lcd_putc "AM");
+      //Alow to set AM or PM
+      while(!input(pin_a4)){
+         if(input(pin_a3)){ //for increasing
+            while(input(pin_a3));
+            v++;
+         }
+         if(input(pin_a5)){ //for decreasing
+            while(input(pin_a5));
+            v--;
+         }
+         v %= 2;
+         lcd_cls(); lcd_ln(1);
+         printf(lcd_putc "Set as AM/PM");
+         lcd_ln(2);
+         if(v) printf(lcd_putc "PM");
+         else  printf(lcd_putc "AM");
+         delay_ms(50);
+      }
+      while(input(pin_a4));
+      //seting the hour
+      if(v){//if it is PM
+         v = fromBCD(0b00011111 & RTC_read(0x02));
+         lcd_cls(); lcd_ln(1);
+         printf(lcd_putc "Set Hour");
+         lcd_ln(2);
+         printf(lcd_putc "%u", v);
+         while(!input(pin_a4)){
+            if(input(pin_a3)){ //for increasing
+               while(input(pin_a3));
+               v++;
+            }
+            if(input(pin_a5)){ //for decreasing
+               while(input(pin_a5));
+               v--;
+            }
+            v %= 12;
+            if(v==0) v=12;
+            lcd_cls(); lcd_ln(1);
+            printf(lcd_putc "Set Hour");
+            lcd_ln(2);
+            printf(lcd_putc "%u", v);
+            delay_ms(50);
+         }
+         while(input(pin_a4));
+         v = (0b01100000 | toBCD(v)); // RTC register coded
+         if(only) RTC_write(0x00, (0b01111111 & RTC_read(0x00)));
+         if(ret) return v;
+         else RTC_write(0x02, v);
+      }
+      else{ //if it is AM
+         v = fromBCD(0b00011111 & RTC_read(0x02));
+         lcd_cls(); lcd_ln(1);
+         printf(lcd_putc "Set Hour");
+         lcd_ln(2);
+         printf(lcd_putc "%u", v);
+         while(!input(pin_a4)){
+            if(input(pin_a3)){ //for increasing
+               while(input(pin_a3));
+               v++;
+            }
+            if(input(pin_a5)){ //for decreasing
+               while(input(pin_a5));
+               v--;
+            }
+            v %= 12;
+            if(v==0) v=12;
+            lcd_cls(); lcd_ln(1);
+            printf(lcd_putc "Set Hour");
+            lcd_ln(2);
+            printf(lcd_putc "%u", v);
+            delay_ms(50);
+         }
+         while(input(pin_a4));
+         v = (0b01000000 | toBCD(v)); // RTC register coded
+         if(only) RTC_write(0x00, (0b01111111 & RTC_read(0x00)));
+         if(ret) return v;
+         else RTC_write(0x02, v);
+      }
+   }
+   else{//for 24 hour Mode
+      v = fromBCD(0b00111111 & RTC_read(0x02));
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Set Hour");
+      lcd_ln(2);
+      printf(lcd_putc "%u", v);
+      while(!input(pin_a4)){
+         if(input(pin_a3)){ //for increasing
+            while(input(pin_a3));
+            v++;
+         }
+         if(input(pin_a5)){ //for decreasing
+            while(input(pin_a5));
+            v--;
+         }
+         v %= 24;
+         lcd_cls(); lcd_ln(1);
+         printf(lcd_putc "Set Hour");
+         lcd_ln(2);
+         printf(lcd_putc "%u", v);
+         delay_ms(50);
+      }
+      while(input(pin_a4));
+      
+      RTC_write(0x02, (0 | toBCD(v)));
+      if(only) RTC_write(0x00, (0b01111111 & RTC_read(0x00)));
+   }
+}
+
+   ////set All time
+void set_time(){
+   RTC_write(0x00, (0b10000000 | RTC_read(0x00)));
+   
+   set_hour(0);
+   set_minute(0);
+   set_second(0);
+   
+   RTC_write(0x00, (0b01111111 & RTC_read(0x00)));
+}
+
+   ////schedule time
+void schedule_time(){
+   
+}
+
+   ////set day
+void set_day(unsigned int1 only = 1){
+unsigned int8 v=0;
+   if(only) RTC_write(0x00, (0b10000000 | RTC_read(0x00)));
+   v = fromBCD(RTC_read(0x03));
+   lcd_cls(); lcd_ln(1);
+   printf(lcd_putc "Set day");
+   lcd_ln(2);
+   printf(lcd_putc "%u", v);
+   while(!input(pin_a4)){
+      if(input(pin_a3)){ //for increasing
+         while(input(pin_a3));
+         v++;
+      }
+      if(input(pin_a5)){ //for decreasing
+         while(input(pin_a5));
+         v--;
+      }
+      v %= 7;
+      if(v==0) v=7;
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Set day");
+      lcd_ln(2);
+      printf(lcd_putc "%u", v);
+   }
+   while(input(pin_a4));
+   RTC_write(0x03, toBCD(v));
+   
+   if(only) RTC_write(0x00, (0b01111111 & RTC_read(0x00)));
+}
+
+   ////set date
+void set_date(unsigned int1 no_days=31, only = 1){
+unsigned int8 v=0;
+   if(only) RTC_write(0x00, (0b10000000 | RTC_read(0x00)));
+   v = fromBCD(RTC_read(0x04));
+   lcd_cls(); lcd_ln(1);
+   printf(lcd_putc "Set Date");
+   lcd_ln(2);
+   printf(lcd_putc "%u", v);
+   while(!input(pin_a4)){
+      if(input(pin_a3)){ //for increasing
+         while(input(pin_a3));
+         v++;
+      }
+      if(input(pin_a5)){ //for decreasing
+         while(input(pin_a5));
+         v--;
+      }
+      v %= no_days;
+      if(v==0) v=no_days;
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Set Date");
+      lcd_ln(2);
+      printf(lcd_putc "%u", v);
+      delay_ms(50);
+   }
+   while(input(pin_a4));
+   RTC_write(0x04, toBCD(v));
+   
+   if(only) RTC_write(0x00, (0b01111111 & RTC_read(0x00)));
+}
+
+   ////set month
+void set_month(unsigned int1 only = 1){
+unsigned int8 v=0;
+   if(only) RTC_write(0x00, (0b10000000 | RTC_read(0x00)));
+   v = fromBCD(RTC_read(0x05));
+   lcd_cls(); lcd_ln(1);
+   printf(lcd_putc "Set Month");
+   lcd_ln(2);
+   printf(lcd_putc "%u", v);
+   while(!input(pin_a4)){
+      if(input(pin_a3)){ //for increasing
+         while(input(pin_a3));
+         v++;
+      }
+      if(input(pin_a5)){ //for decreasing
+         while(input(pin_a5));
+         v--;
+      }
+      v %= 12;
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Set Month");
+      lcd_ln(2);
+      printf(lcd_putc "%u", v);
+      delay_ms(50);
+   }
+   while(input(pin_a4));
+   RTC_write(0x05, toBCD(v));
+   
+   if(only) RTC_write(0x00, (0b01111111 & RTC_read(0x00)));
+}
+
+   ////set year
+void set_year(unsigned int1 only = 1){
+unsigned int8 v=0;
+   if(only) RTC_write(0x00, (0b10000000 | RTC_read(0x00)));
+   v = fromBCD(RTC_read(0x01));
+   lcd_cls(); lcd_ln(1);
+   printf(lcd_putc "Set Year");
+   lcd_ln(2);
+   printf(lcd_putc "%u", v);
+   while(!input(pin_a4)){
+      if(input(pin_a3)){ //for increasing
+         while(input(pin_a3));
+         v++;
+      }
+      if(input(pin_a5)){ //for decreasing
+         while(input(pin_a5));
+         v--;
+      }
+      v %= 99;
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Set Year");
+      lcd_ln(2);
+      printf(lcd_putc "%u", v);
+      delay_ms(50);
+   }
+   while(input(pin_a4));
+   RTC_write(0x01, toBCD(v));
+   
+   if(only) RTC_write(0x00, (0b01111111 & RTC_read(0x00)));
+}
+
+void sys_init(){
+   output_a(0); output_b(0); output_c(0);
+   set_tris_a(0b111111); set_tris_b(0); set_tris_c(0);
+   output_a(0); output_b(0); output_c(0);
+   
+   lcd_init();
+   set_time();
+}
+

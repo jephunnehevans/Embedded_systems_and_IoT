@@ -1,0 +1,51 @@
+
+ROM used:   381/1024 (37%)
+            381/1024 (37%) including unused fragments
+
+            0.8 Average locations per line
+            5.7 Average locations per statement
+
+RAM used:   15/68 (22%) at main() level
+            32/68 (47%) worst case
+
+Stack used: 3 worst case (1 in main + 2 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   18    17  25  3_7_segment.c
+   84    50  75  3_7_segment.h
+  404     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h
+----- -----
+  506    67 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     27   7   12   174  3.5  display
+0     37  10    5   313  5.0  @DIV1616
+0     21   6    5   313  5.0  @MUL1616
+0    163  43    9  1432  6.1  isrtimer0
+0     22   6    0   245  1.8  sys_init
+0     57  15    0   313  5.0  MAIN
+ Inline         0             @cinit1
+
+Program metrics:
+    Functions               6
+    Statements              67
+    Comments                69
+    Volume (V)              3893
+    Difficulty (D)          27.1
+    Effort to implement (E) 105439
+    Time to implement (T)   1 hours, 38 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   16
+    Maintainability (MI)    55
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-00035    50  0  
+00036-003FF   327  643  
+
+
+

@@ -1,0 +1,8 @@
+#include <passcode_safe.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      
+   }
+}

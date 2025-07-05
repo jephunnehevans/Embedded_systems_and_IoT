@@ -1,0 +1,241 @@
+CCS PCM C Compiler, Version 5.015, 5967               14-May-25 14:53
+
+               Filename:   C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\New folder\New\New.lst
+
+               ROM used:   147 words (14%)
+                           Largest free fragment is 877
+               RAM used:   15 (22%) at main() level
+                           16 (24%) worst case
+               Stack used: 2 locations (1 in main + 1 for interrupts)
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   061
+0003:  NOP
+0004:  BTFSC  03.5
+0005:  GOTO   00A
+0006:  MOVWF  10
+0007:  SWAPF  03,W
+0008:  MOVWF  11
+0009:  GOTO   00F
+000A:  BCF    03.5
+000B:  MOVWF  10
+000C:  SWAPF  03,W
+000D:  MOVWF  11
+000E:  BSF    11.1
+000F:  MOVF   0A,W
+0010:  MOVWF  17
+0011:  CLRF   0A
+0012:  BCF    03.7
+0013:  SWAPF  10,F
+0014:  MOVF   04,W
+0015:  MOVWF  12
+0016:  MOVF   0C,W
+0017:  MOVWF  13
+0018:  MOVF   0D,W
+0019:  MOVWF  14
+001A:  MOVF   0E,W
+001B:  MOVWF  15
+001C:  MOVF   0F,W
+001D:  MOVWF  16
+001E:  BCF    03.5
+001F:  BTFSS  0B.4
+0020:  GOTO   023
+0021:  BTFSC  0B.1
+0022:  GOTO   036
+0023:  MOVF   12,W
+0024:  MOVWF  04
+0025:  MOVF   13,W
+0026:  MOVWF  0C
+0027:  MOVF   14,W
+0028:  MOVWF  0D
+0029:  MOVF   15,W
+002A:  MOVWF  0E
+002B:  MOVF   16,W
+002C:  MOVWF  0F
+002D:  MOVF   17,W
+002E:  MOVWF  0A
+002F:  SWAPF  11,W
+0030:  MOVWF  03
+0031:  BCF    03.5
+0032:  SWAPF  10,W
+0033:  BTFSC  11.1
+0034:  BSF    03.5
+0035:  RETFIE
+.................... #include <New.h> 
+.................... #include <16F84A.h> 
+.................... //////////// Standard Header file for the PIC16F84A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F84A 
+....................  
+.................... #list 
+....................  
+.................... #use fast_io(a) 
+.................... #use fast_io(b) 
+.................... #FUSES XT,NOWDT,PUT,PROTECT 
+.................... #use delay(crystal=4000000) 
+*
+004D:  MOVLW  1B
+004E:  MOVWF  04
+004F:  MOVF   00,W
+0050:  BTFSC  03.2
+0051:  GOTO   060
+0052:  MOVLW  01
+0053:  MOVWF  0D
+0054:  CLRF   0C
+0055:  DECFSZ 0C,F
+0056:  GOTO   055
+0057:  DECFSZ 0D,F
+0058:  GOTO   054
+0059:  MOVLW  4A
+005A:  MOVWF  0C
+005B:  DECFSZ 0C,F
+005C:  GOTO   05B
+005D:  GOTO   05E
+005E:  DECFSZ 00,F
+005F:  GOTO   052
+0060:  RETURN
+....................  
+.................... #define pwr_led pin_a0 
+.................... #define main_led pin_a1 
+.................... #define irs_led pin_a2 
+....................  
+.................... unsigned int1 trig=0; 
+.................... unsigned int8 x=0; 
+....................  
+.................... #int_ext 
+.................... void isrext(){ 
+.................... //!   for(x=0;x<4;x++){ //This code will not work because an interrupt works 
+.................... //!      output_high(pin_a2); //for on 999us 
+.................... //!      delay_ms(3000); 
+.................... //!      output_low(pin_a2); 
+.................... //!      delay_ms(2000); 
+.................... //!   } 
+....................    trig=1; 
+*
+0036:  BSF    18.0
+0037:  BCF    0B.1
+0038:  BCF    0A.3
+0039:  GOTO   023
+.................... } 
+....................  
+.................... void sys_init(){ 
+....................    output_a(0); output_b(0); 
+003A:  CLRF   05
+003B:  CLRF   06
+....................    set_tris_a(0); set_tris_b(1); 
+003C:  MOVLW  00
+003D:  BSF    03.5
+003E:  MOVWF  05
+003F:  MOVLW  01
+0040:  MOVWF  06
+....................    output_a(0); output_b(0); 
+0041:  BCF    03.5
+0042:  CLRF   05
+0043:  CLRF   06
+....................     
+....................    clear_interrupt(int_ext); 
+0044:  BCF    0B.1
+....................    enable_interrupts(int_ext); 
+0045:  BSF    0B.4
+....................    ext_int_edge(h_to_l); 
+0046:  BSF    03.5
+0047:  BCF    01.6
+....................    enable_interrupts(global); 
+0048:  BCF    03.5
+0049:  BSF    0B.7
+....................    clear_interrupt(int_ext); 
+004A:  BCF    0B.1
+....................     
+....................    output_high(pwr_led); 
+004B:  BSF    05.0
+004C:  GOTO   067 (RETURN)
+.................... } 
+....................  
+....................  
+....................  
+.................... void main(){ 
+*
+0061:  MOVF   03,W
+0062:  ANDLW  1F
+0063:  MOVWF  03
+0064:  BCF    18.0
+0065:  CLRF   19
+....................    sys_init(); 
+0066:  GOTO   03A
+....................     
+....................    while(TRUE) 
+....................    { 
+....................       output_high(main_led); 
+0067:  BSF    05.1
+....................       delay_ms(700); 
+0068:  MOVLW  04
+0069:  MOVWF  1A
+006A:  MOVLW  AF
+006B:  MOVWF  1B
+006C:  CALL   04D
+006D:  DECFSZ 1A,F
+006E:  GOTO   06A
+....................       output_low(main_led); 
+006F:  BCF    05.1
+....................       delay_ms(300); 
+0070:  MOVLW  02
+0071:  MOVWF  1A
+0072:  MOVLW  96
+0073:  MOVWF  1B
+0074:  CALL   04D
+0075:  DECFSZ 1A,F
+0076:  GOTO   072
+....................        
+....................       if(trig==1){ 
+0077:  BTFSS  18.0
+0078:  GOTO   091
+....................          for(x=0;x<4;x++){ 
+0079:  CLRF   19
+007A:  MOVF   19,W
+007B:  SUBLW  03
+007C:  BTFSS  03.0
+007D:  GOTO   090
+....................             output_high(irs_led); 
+007E:  BSF    05.2
+....................             delay_ms(3000); 
+007F:  MOVLW  0C
+0080:  MOVWF  1A
+0081:  MOVLW  FA
+0082:  MOVWF  1B
+0083:  CALL   04D
+0084:  DECFSZ 1A,F
+0085:  GOTO   081
+....................             output_low(irs_led); 
+0086:  BCF    05.2
+....................             delay_ms(2000); 
+0087:  MOVLW  08
+0088:  MOVWF  1A
+0089:  MOVLW  FA
+008A:  MOVWF  1B
+008B:  CALL   04D
+008C:  DECFSZ 1A,F
+008D:  GOTO   089
+008E:  INCF   19,F
+008F:  GOTO   07A
+....................          } 
+....................          trig = 0; 
+0090:  BCF    18.0
+....................       } 
+0091:  GOTO   067
+....................    } 
+.................... } 
+0092:  SLEEP
+
+Configuration Fuses:
+   Word  1: 0001   XT NOWDT PUT PROTECT

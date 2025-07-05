@@ -1,0 +1,224 @@
+CCS PCM C Compiler, Version 5.015, 5967               13-May-25 22:42
+
+               Filename:   C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\New folder\Lesson interrupt.lst
+
+               ROM used:   109 words (11%)
+                           Largest free fragment is 915
+               RAM used:   12 (18%) at main() level
+                           12 (18%) worst case
+               Stack used: 2 locations (1 in main + 1 for interrupts)
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   067
+0003:  NOP
+0004:  BTFSC  03.5
+0005:  GOTO   00A
+0006:  MOVWF  10
+0007:  SWAPF  03,W
+0008:  MOVWF  11
+0009:  GOTO   00F
+000A:  BCF    03.5
+000B:  MOVWF  10
+000C:  SWAPF  03,W
+000D:  MOVWF  11
+000E:  BSF    11.1
+000F:  MOVF   0A,W
+0010:  MOVWF  17
+0011:  CLRF   0A
+0012:  BCF    03.7
+0013:  SWAPF  10,F
+0014:  MOVF   04,W
+0015:  MOVWF  12
+0016:  MOVF   0C,W
+0017:  MOVWF  13
+0018:  MOVF   0D,W
+0019:  MOVWF  14
+001A:  MOVF   0E,W
+001B:  MOVWF  15
+001C:  MOVF   0F,W
+001D:  MOVWF  16
+001E:  BCF    03.5
+001F:  BTFSS  0B.3
+0020:  GOTO   023
+0021:  BTFSC  0B.0
+0022:  GOTO   03F
+0023:  BTFSS  0B.4
+0024:  GOTO   027
+0025:  BTFSC  0B.1
+0026:  GOTO   03A
+0027:  MOVF   12,W
+0028:  MOVWF  04
+0029:  MOVF   13,W
+002A:  MOVWF  0C
+002B:  MOVF   14,W
+002C:  MOVWF  0D
+002D:  MOVF   15,W
+002E:  MOVWF  0E
+002F:  MOVF   16,W
+0030:  MOVWF  0F
+0031:  MOVF   17,W
+0032:  MOVWF  0A
+0033:  SWAPF  11,W
+0034:  MOVWF  03
+0035:  BCF    03.5
+0036:  SWAPF  10,W
+0037:  BTFSC  11.1
+0038:  BSF    03.5
+0039:  RETFIE
+.................... #include <Lesson interrupt.h> 
+.................... #include <16F84A.h> 
+.................... //////////// Standard Header file for the PIC16F84A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F84A 
+....................  
+.................... #list 
+....................  
+.................... #use fast_io(a) 
+.................... #use fast_io(b) 
+.................... #FUSES XT,NOWDT,PUT,PROTECT 
+.................... #use delay(crystal=4000000) 
+....................  
+.................... #int_ext 
+.................... void isrext(){ 
+....................    output_toggle(pin_a0); 
+003A:  MOVLW  01
+003B:  XORWF  05,F
+.................... } 
+....................  
+003C:  BCF    0B.1
+003D:  BCF    0A.3
+003E:  GOTO   027
+.................... #int_rb 
+.................... void isrrb(){ 
+....................    if(input(pin_b4))output_toggle(pin_a1); 
+003F:  BTFSS  06.4
+0040:  GOTO   043
+0041:  MOVLW  02
+0042:  XORWF  05,F
+....................    if(input(pin_b5))output_toggle(pin_a2); 
+0043:  BTFSS  06.5
+0044:  GOTO   047
+0045:  MOVLW  04
+0046:  XORWF  05,F
+....................    if(input(pin_b6))output_toggle(pin_a3); 
+0047:  BTFSS  06.6
+0048:  GOTO   04B
+0049:  MOVLW  08
+004A:  XORWF  05,F
+....................    if(input(pin_b7))output_toggle(pin_b1); 
+004B:  BTFSS  06.7
+004C:  GOTO   04F
+004D:  MOVLW  02
+004E:  XORWF  06,F
+....................     
+.................... //!   switch(int_rb){ 
+.................... //!      case 0b0001: 
+.................... //!         output_toggle(pin_a1); 
+.................... //!      case 0b0010: 
+.................... //!         output_toggle(pin_a2); 
+.................... //!      case 0b0100: 
+.................... //!         output_toggle(pin_a3); 
+.................... //!      case 0b1000: 
+.................... //!         output_toggle(pin_a4); 
+.................... //!   } 
+004F:  BCF    0B.0
+0050:  BCF    0A.3
+0051:  GOTO   027
+.................... } 
+....................  
+.................... void sys_init(){ 
+....................    output_a(0); 
+0052:  CLRF   05
+....................    output_b(0); 
+0053:  CLRF   06
+....................    set_tris_a(0); 
+0054:  MOVLW  00
+0055:  BSF    03.5
+0056:  MOVWF  05
+....................    set_tris_b(0b11111101); 
+0057:  MOVLW  FD
+0058:  MOVWF  06
+....................    output_a(0); 
+0059:  BCF    03.5
+005A:  CLRF   05
+....................    output_b(0); 
+005B:  CLRF   06
+....................     
+....................    clear_interrupt(int_ext); 
+005C:  BCF    0B.1
+....................    enable_interrupts(int_ext); 
+005D:  BSF    0B.4
+....................    ext_int_edge(h_to_l); 
+005E:  BSF    03.5
+005F:  BCF    01.6
+....................    clear_interrupt(int_ext); 
+0060:  BCF    03.5
+0061:  BCF    0B.1
+....................     
+....................    clear_interrupt(int_rb); 
+0062:  BCF    0B.0
+....................    enable_interrupts(int_rb); 
+0063:  BSF    0B.3
+....................    enable_interrupts(global); 
+0064:  BSF    0B.7
+....................    clear_interrupt(int_rb); 
+0065:  BCF    0B.0
+0066:  GOTO   06B (RETURN)
+.................... } 
+....................  
+.................... void NO_INT(){ 
+....................    switch(input_a()){ 
+....................       case 1: 
+....................          while(input_a()==1); 
+....................          output_toggle(pin_b1); 
+....................          break; 
+....................       case 2: 
+....................          while(input_a()==2); 
+....................          output_toggle(pin_b2); 
+....................          break; 
+....................       case 4: 
+....................          while(input_a()==4); 
+....................          output_toggle(pin_b3); 
+....................          break; 
+....................       case 8: 
+....................          while(input_a()==8); 
+....................          output_toggle(pin_b4); 
+....................          break; 
+....................       case 16: 
+....................          while(input_a()==16); 
+....................          output_toggle(pin_b5); 
+....................             break; 
+....................          default: 
+....................             break; 
+....................          } 
+.................... } 
+....................  
+....................  
+.................... void main(){ 
+0067:  MOVF   03,W
+0068:  ANDLW  1F
+0069:  MOVWF  03
+....................    sys_init(); 
+006A:  GOTO   052
+....................     
+....................    while(TRUE){ 
+006B:  GOTO   06B
+.................... //!      isrext(); 
+....................    } 
+....................  
+.................... } 
+006C:  SLEEP
+
+Configuration Fuses:
+   Word  1: 0001   XT NOWDT PUT PROTECT

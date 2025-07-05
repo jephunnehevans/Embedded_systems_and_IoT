@@ -1,0 +1,21 @@
+[PROJECT]
+Target=UART.hex
+Processor_Text=PIC16F876A
+CCSVersion=5.015
+Compiler=PCM
+[Target Data]
+FileList=UART.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[UART.c]
+Type=4
+[mru-list]
+1=UART.c
+[Opened Files]
+1=UART.c
+2=UART.h
+3=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F876A.h
+4=
+[Units]
+Count=1
+1=UART (main)

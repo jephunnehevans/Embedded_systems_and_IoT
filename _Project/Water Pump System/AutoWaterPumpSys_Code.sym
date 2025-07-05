@@ -1,0 +1,145 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020-023 dist
+024     lcd_init.i
+024-027 @PRINTF_L32D_625FPFPF.P1
+024     @PSTRINGCN7_625.P2
+024-025 @ITOF.P3
+024     sys_init.@SCRATCH1
+024     @PSTRINGC7_625.@SCRATCH1
+024     MAIN.@SCRATCH1
+025-028 lcd_init.LCD_INIT_STRING
+025     @PSTRINGC7_625.@SCRATCH2
+025     MAIN.@SCRATCH2
+025     @PSTRINGCN7_625.@SCRATCH1
+026     @PSTRINGC7_625.@SCRATCH3
+026     MAIN.@SCRATCH3
+026     @PSTRINGCN7_625.@SCRATCH2
+027     @PSTRINGC7_625.@SCRATCH4
+027     MAIN.@SCRATCH4
+027     @PSTRINGCN7_625.@SCRATCH3
+028-02B @DIVFF.P1
+028     @PRINTF_L32D_625FPFPF.P2
+028     @PSTRINGCN7_625.@SCRATCH4
+029     lcd_init.@SCRATCH1
+029     @PRINTF_L32D_625FPFPF.@SCRATCH1
+02A     @PRINTF_L32D_625FPFPF.@SCRATCH2
+02B     @PRINTF_L32D_625FPFPF.@SCRATCH3
+02C-02F @DIVFF.P1
+02C     @PRINTF_L32D_625FPFPF.@SCRATCH4
+02D     @PRINTF_L32D_625FPFPF.@SCRATCH5
+02E     @PRINTF_L32D_625FPFPF.@SCRATCH6
+02F     @PRINTF_L32D_625FPFPF.@SCRATCH7
+030     @DIVFF.@SCRATCH1
+030     @PRINTF_L32D_625FPFPF.@SCRATCH8
+031     lcd_putc.c
+031-034 @MULFF.P1
+031-034 @FTOSD.P2
+031-034 @DIV3232.P3
+031     @DIVFF.@SCRATCH2
+032     lcd_gotoxy.x
+032     @delay_ms1.P1
+032     @DIVFF.@SCRATCH3
+033     lcd_gotoxy.y
+033     @DIVFF.@SCRATCH4
+034     lcd_gotoxy.address
+034     @DIVFF.@SCRATCH5
+035-038 @DIV3232.P1
+035-038 @MULFF.P2
+035     lcd_gotoxy.@SCRATCH1
+035     @DIVFF.@SCRATCH6
+035     @FTOSD.@SCRATCH1
+036     lcd_send_byte.address
+037     lcd_send_byte.n
+038     lcd_read_byte.low
+038     lcd_send_byte.@SCRATCH1
+039     lcd_send_nibble.n
+039     lcd_read_byte.high
+039     @MULFF.@SCRATCH1
+039     @DIV3232.@SCRATCH1
+03A     lcd_read_nibble.n
+03A     lcd_read_byte.@SCRATCH1
+03A     @MULFF.@SCRATCH2
+03A     @DIV3232.@SCRATCH2
+03B     lcd_read_nibble.@SCRATCH1
+03B     @MULFF.@SCRATCH3
+03B     @DIV3232.@SCRATCH3
+03C     @MULFF.@SCRATCH4
+03C     @DIV3232.@SCRATCH4
+03D     @MULFF.@SCRATCH5
+03D     @DIV3232.@SCRATCH5
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @const639.call
+00000B  @const641.call
+000011  @const656.call
+000018  @delay_ms1
+00002D  lcd_send_nibble
+000046  lcd_read_nibble
+00006B  lcd_send_byte
+000071  lcd_read_byte
+0000AE  lcd_gotoxy
+0000C0  lcd_putc
+0000EC  @PSTRINGC7_625
+000142  sys_init
+000157  lcd_init
+0001B7  Trig
+0001C2  @ITOF
+0001E1  @MULFF
+000256  @DIVFF
+000322  @PSTRINGCN7_625
+00037B  @DIV3232
+0003CA  @PRINTF_L32D_625FPFPF
+0003F1  @FTOSD
+0004AC  @cinit1
+0004AC  MAIN
+0004BA  @cinit2
+
+Project Directory:
+    C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Project\Water Pump System\
+
+Project Files:
+    AutoWaterPumpSys_Code.c                                 [02-Jul-25 17:28  CRC=64CCCB6B]
+    AutoWaterPumpSys_Code.h                                 [02-Jul-25 17:23  CRC=68C77246]
+    ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F876A.h [12-Nov-13 14:35  CRC=7FE1E080]
+    ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [19-Sep-13 15:38  CRC=D1A6378A]
+
+Source signature=F0C28D45
+
+Units:
+    AutoWaterPumpSys_Code (main)
+
+Compiler Settings:
+    Processor:      PIC16F876A
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   AutoWaterPumpSys_Code.xsym
+    Errors:      AutoWaterPumpSys_Code.err
+    Ext Symbols: AutoWaterPumpSys_Code.esym
+    INHX8:       AutoWaterPumpSys_Code.hex
+    Symbols:     AutoWaterPumpSys_Code.sym
+    List:        AutoWaterPumpSys_Code.lst
+    Debug/COFF:  AutoWaterPumpSys_Code.cof
+    Project:     AutoWaterPumpSys_Code.ccspjt
+    Call Tree:   AutoWaterPumpSys_Code.tre
+    Statistics:  AutoWaterPumpSys_Code.STA

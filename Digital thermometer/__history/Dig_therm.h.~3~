@@ -1,0 +1,7 @@
+#include <16F876A.h>
+#device ADC=16
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,LVP,CPD,NOWRT,NODEBUG,PROTECT
+#use delay(crystal=4000000)
+
+#include "lcd.c"
+

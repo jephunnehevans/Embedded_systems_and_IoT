@@ -1,0 +1,41 @@
+#include <main.h>
+
+void main(){
+   sys_init();
+   while(TRUE) {
+      lcd_putc('\f');
+      n = scan(1);
+      lcd_gotoxy(1,1);
+      printf(lcd_putc "%s", n);
+      n1 = atoi(n);
+      
+      sign = scan(0);
+      lcd_gotoxy(1,1);
+      printf(lcd_putc "%s", n);
+      
+      n = scan(1);
+      lcd_gotoxy(1,1);
+      printf(lcd_putc "%s", n);
+      n2 = atoi(n);
+      
+      output_b(255);
+      output_low(pin_b6);
+      for(;;){
+         if(!input(pin_b3)){
+            while(!input(pin_b3));
+            lcd_gotoxy(1,2);
+            printf(lcd_putc "= %f", calc(num1, sign, num2));
+            break;
+         }
+      }
+      
+      output_b(255);
+      output_low(pin_b4);
+      for(;;){
+         if(!input(pin_b3)){
+            while(!input(pin_b3)); 
+            break;
+         }
+      }
+   }
+}

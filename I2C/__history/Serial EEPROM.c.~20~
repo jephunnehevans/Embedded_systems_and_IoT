@@ -1,0 +1,33 @@
+#include <Serial EEPROM.h>
+
+void main(){
+   sys_init();
+//!   loc = make16(read_eeprom(1),read_eeprom(0));
+   loc = 0;
+   while(TRUE){
+      temp = READ_ADC();
+      delay_ms(100);
+      
+      lcd_clear(); lcd_line(1);
+      printf(lcd_putc "Temp = %u %cC", temp, 223);
+      lcd_line(2);
+      printf(lcd_putc "Loc = %Lu", loc);
+      
+      if(input(str_pin)){
+         while(input(str_pin));
+         lcd_clear(); lcd_line(1);
+         printf(lcd_putc "Storing ...");
+         i2c_eeprom_write(make8(loc, 1), make8(loc, 0), temp);
+         write_eeprom(0, make8(loc, 0));
+         delay_ms(100);
+         write_eeprom(1, make8(loc, 1));
+         delay_ms(100);
+         loc++;
+      }
+      if(input(rcl_pin)){
+         while(input(rcl_pin));
+         printf(lcd_putc "%c", i2c_eeprom_read(make8(loc, 1), make8(loc, 0)));
+         delay_ms(3000);
+      }
+   }
+}

@@ -1,0 +1,6 @@
+#include <16F84A.h>
+#include fast_io(a)
+#include fast_io(b)
+#FUSES XT,NOWDT,PUT,PROTECT
+#use delay(crystal=4000000)
+

@@ -1,0 +1,25 @@
+[PROJECT]
+Target=Serial EEPROM.hex
+Processor_Text=PIC16F876A
+CCSVerions=5.015
+Compiler=PCM
+CCSVersion=5.015
+[Target Data]
+FileList=Serial EEPROM.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\I2C\Serial EEPROM]
+Type=4
+[mru-list]
+1=Serial EEPROM.c
+[Opened Files]
+1=Serial EEPROM.c
+2=Serial EEPROM.h
+3=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F876A.h
+4=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+5=
+[Serial EEPROM.c]
+Type=4
+[Units]
+Count=1
+1=Serial EEPROM (main)

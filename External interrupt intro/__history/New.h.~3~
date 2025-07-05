@@ -1,0 +1,30 @@
+#include <16F84A.h>
+#use fast_io(a)
+#use fast_io(b)
+#FUSES XT,NOWDT,PUT,PROTEC
+#use delay(crystal=4000000)
+
+#int_ext
+void isrext(){
+   trig=1;
+}
+
+unsigned int1 trig=0;
+unsigned int8 x=0;
+
+void sys_init(){
+   output_a(0);
+   output_b(0);
+   set_tris_a(0);
+   set_tris_b(1);
+   output_a(0);
+   output_b(0);
+   
+   clear_interrupt(int_ext);
+   enable_interrupts(int_ext);
+   ext_int_edge(h_to_l);
+   enable_interrupts(global);
+   clear_interrupt(int_ext);
+}
+
+

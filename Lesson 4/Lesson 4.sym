@@ -1,0 +1,48 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+009-00A @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+010     count
+011     maxVal
+012     minVal
+
+ROM Allocation:
+000004  method3
+00002D  MAIN
+00002D  @cinit1
+000034  @cinit2
+
+Project Directory:
+    C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Lesson 4\
+
+Project Files:
+    Lesson 4.c                                              [07-May-25 16:32  CRC=D872A938]
+    Lesson 4.h                                              [07-May-25 16:22  CRC=6ABED4D9]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h [12-Nov-13 14:34  CRC=4E09ACDB]
+
+Source signature=DF44D7C7
+
+Units:
+    Lesson 4 (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   Lesson 4.xsym
+    Errors:      Lesson 4.err
+    Ext Symbols: Lesson 4.esym
+    INHX8:       Lesson 4.hex
+    Symbols:     Lesson 4.sym
+    List:        Lesson 4.lst
+    Debug/COFF:  Lesson 4.cof
+    Project:     Lesson 4.ccspjt
+    Call Tree:   Lesson 4.tre
+    Statistics:  Lesson 4.STA

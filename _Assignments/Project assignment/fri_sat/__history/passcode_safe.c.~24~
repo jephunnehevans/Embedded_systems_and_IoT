@@ -1,0 +1,30 @@
+#include <passcode_safe.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      while(f){
+         lcd_cls(); lcd_ln(1);
+         delay_ms(500);
+         printf(lcd_putc "Enter Passcode");
+         for(t=0;t<4;t++){
+           code[t] = type();
+           lcd_ln(2,(16-t));
+           printf(lcd_putc "%s", code);
+         }
+         for(t=0;t<5;t++){
+            if(code[t] != correct_code[t]){\
+               f = 1;
+               break;
+            }
+            else f = 0;
+         }
+         delay_ms(150);
+         lcd_ln(2);
+         if(f) printf(lcd_putc "Wrong code:");
+         else  printf(lcd_putc "Right code:")
+         delay_ms(1500);
+      }
+      delay_ms(1000);
+   }
+}

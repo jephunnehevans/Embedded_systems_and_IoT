@@ -1,0 +1,31 @@
+#include <UART.h>
+
+void main(){
+   sys_init();
+   putc(254); putc(1);
+   putc(254); putc(00);
+   printf("Type Something");
+   fprintf(My_terminal, "Welcome to My Terminal\n\r>>");
+   while(TRUE){
+//!      putc(254); putc(192);
+//!      printf("Typeing ... %u", x++);
+      letterInput = getc(My_terminal);
+      putc(254); putc(192);
+      printf("%Ls ASCI: %u & Char: %c", x, letterInput, letterInput);
+      
+      
+      fprintf(My_terminal, "%c", letterInput);
+      
+      if((int)letterInput==13){
+         command[x] = "\o";
+         for(intL=0; intL<sizeof(command); x++) fprintf(My_terminal, "\n\r%c"command[x]);
+         command="";
+         fprintf(My_terminal, ">>");
+      }
+      else command[x] = letterInput;
+//!      putc(254); putc(192);
+//!      printf("Character ...);
+//!      
+//!      pu
+   }
+}

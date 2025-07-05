@@ -1,0 +1,193 @@
+CCS PCM C Compiler, Version 5.015, 5967               22-May-25 17:08
+
+               Filename:   C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Making UART PIN\Mk_UART.lst
+
+               ROM used:   136 words (13%)
+                           Largest free fragment is 888
+               RAM used:   5 (7%) at main() level
+                           7 (10%) worst case
+               Stack used: 2 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   077
+0003:  NOP
+.................... #include <Mk_UART.h> 
+.................... #include <16F84A.h> 
+.................... //////////// Standard Header file for the PIC16F84A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F84A 
+0004:  BCF    0A.0
+0005:  BCF    0A.1
+0006:  BCF    0A.2
+0007:  ADDWF  02,F
+0008:  RETLW  77
+0009:  RETLW  65
+000A:  RETLW  6C
+000B:  RETLW  63
+000C:  RETLW  6F
+000D:  RETLW  6D
+000E:  RETLW  65
+000F:  RETLW  00
+....................  
+.................... #list 
+....................  
+.................... #FUSES XT,NOWDT,PUT,PROTECT 
+.................... #use delay(crystal=4000000) 
+.................... #use rs232(baud=9600, parity=N,xmit=pin_a0, rcv=pin_a1) 
+0010:  BSF    03.5
+0011:  BCF    05.0
+0012:  BCF    03.5
+0013:  BCF    05.0
+0014:  MOVLW  08
+0015:  MOVWF  0D
+0016:  GOTO   017
+0017:  NOP
+0018:  BSF    0D.7
+0019:  GOTO   028
+001A:  BCF    0D.7
+001B:  RRF    12,F
+001C:  BTFSC  03.0
+001D:  BSF    05.0
+001E:  BTFSS  03.0
+001F:  BCF    05.0
+0020:  BSF    0D.6
+0021:  GOTO   028
+0022:  BCF    0D.6
+0023:  DECFSZ 0D,F
+0024:  GOTO   01B
+0025:  GOTO   026
+0026:  NOP
+0027:  BSF    05.0
+0028:  MOVLW  1C
+0029:  MOVWF  04
+002A:  DECFSZ 04,F
+002B:  GOTO   02A
+002C:  GOTO   02D
+002D:  BTFSC  0D.7
+002E:  GOTO   01A
+002F:  BTFSC  0D.6
+0030:  GOTO   022
+0031:  RETURN
+*
+0052:  BSF    03.5
+0053:  BSF    05.1
+0054:  BCF    03.5
+0055:  BTFSC  05.1
+0056:  GOTO   055
+0057:  MOVLW  08
+0058:  MOVWF  0C
+0059:  CLRF   11
+005A:  BSF    0C.7
+005B:  GOTO   06A
+005C:  BCF    0C.7
+005D:  GOTO   06A
+005E:  BCF    03.0
+005F:  BTFSC  05.1
+0060:  BSF    03.0
+0061:  RRF    11,F
+0062:  BSF    0C.6
+0063:  GOTO   06A
+0064:  BCF    0C.6
+0065:  DECFSZ 0C,F
+0066:  GOTO   05E
+0067:  MOVF   11,W
+0068:  MOVWF  0D
+0069:  GOTO   076
+006A:  MOVLW  1C
+006B:  BTFSC  0C.7
+006C:  MOVLW  07
+006D:  MOVWF  0D
+006E:  DECFSZ 0D,F
+006F:  GOTO   06E
+0070:  NOP
+0071:  BTFSC  0C.7
+0072:  GOTO   05C
+0073:  BTFSC  0C.6
+0074:  GOTO   064
+0075:  GOTO   05E
+0076:  GOTO   081 (RETURN)
+....................  
+.................... char j = ""; 
+....................  
+.................... void sys_init(){ 
+....................    output_a(0); output_b(0); 
+*
+0032:  BSF    03.5
+0033:  CLRF   05
+0034:  BCF    03.5
+0035:  CLRF   05
+0036:  BSF    03.5
+0037:  CLRF   06
+0038:  BCF    03.5
+0039:  CLRF   06
+....................    set_tris_a(0b00010); 
+003A:  MOVLW  02
+003B:  BSF    03.5
+003C:  MOVWF  05
+....................    set_tris_b(0); 
+003D:  MOVLW  00
+003E:  MOVWF  06
+....................    output_a(0); output_b(0); 
+003F:  CLRF   05
+0040:  BCF    03.5
+0041:  CLRF   05
+0042:  BSF    03.5
+0043:  CLRF   06
+0044:  BCF    03.5
+0045:  CLRF   06
+....................     
+....................    printf("welcome"); 
+0046:  CLRF   11
+0047:  MOVF   11,W
+0048:  CALL   004
+0049:  INCF   11,F
+004A:  MOVWF  0C
+004B:  MOVWF  12
+004C:  CALL   010
+004D:  MOVLW  07
+004E:  SUBWF  11,W
+004F:  BTFSS  03.2
+0050:  GOTO   047
+0051:  GOTO   080 (RETURN)
+.................... } 
+....................  
+....................  
+.................... void main(){ 
+*
+0077:  MOVF   03,W
+0078:  ANDLW  1F
+0079:  MOVWF  03
+007A:  BSF    03.5
+007B:  BCF    05.0
+007C:  BCF    03.5
+007D:  BSF    05.0
+007E:  CLRF   10
+....................    sys_init(); 
+007F:  GOTO   032
+....................    while(TRUE){ 
+....................       j = getc(); 
+0080:  GOTO   052
+0081:  MOVF   0D,W
+0082:  MOVWF  10
+....................       putc(j); 
+0083:  MOVF   10,W
+0084:  MOVWF  12
+0085:  CALL   010
+0086:  GOTO   080
+....................    } 
+.................... } 
+0087:  SLEEP
+
+Configuration Fuses:
+   Word  1: 0001   XT NOWDT PUT PROTECT

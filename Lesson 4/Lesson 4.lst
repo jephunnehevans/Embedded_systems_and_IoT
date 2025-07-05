@@ -1,0 +1,151 @@
+CCS PCM C Compiler, Version 5.015, 5967               07-May-25 16:32
+
+               Filename:   C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Lesson 4\Lesson 4.lst
+
+               ROM used:   61 words (6%)
+                           Largest free fragment is 963
+               RAM used:   7 (10%) at main() level
+                           7 (10%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   02D
+0003:  NOP
+.................... #include <Lesson 4.h> 
+.................... #include <16F84A.h> 
+.................... //////////// Standard Header file for the PIC16F84A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F84A 
+....................  
+.................... #list 
+....................  
+.................... #FUSES XT,NOWDT,PUT,PROTECT                    //No Watch Dog Timer 
+....................  
+.................... #use delay(crystal=4000000) 
+....................  
+.................... unsigned int8 count=0, maxVal=10, minVal=0; 
+....................  
+.................... void method1(){ 
+....................    if(input(pin_a0)&&(count<maxVal)){ 
+....................       while(input(pin_a0)); 
+....................       output_b(++count); 
+....................    } 
+....................    if((input(pin_a1))&&(count>minVal)){ 
+....................       while(input(pin_a1)); 
+....................       output_b(--count); 
+....................    } 
+.................... } 
+....................  
+.................... void method2(){ 
+....................    if(input(pin_a0)){ 
+....................       while(input(pin_a0)); 
+....................       ++count; 
+....................       if(count>maxVal)count=maxVal; 
+....................       output_b(count); 
+....................    } 
+....................    if(input(pin_a1)){ 
+....................       while(input(pin_a1)); 
+....................       count--; 
+....................       if((count<(minVal+1))||(count>maxVal))count=minVal; 
+....................       output_b(count); 
+....................    } 
+.................... } 
+....................  
+.................... void method3(){ 
+....................    if(input(pin_a0)){ 
+0004:  BSF    03.5
+0005:  BSF    05.0
+0006:  BCF    03.5
+0007:  BTFSS  05.0
+0008:  GOTO   018
+....................       while(input(pin_a0)); 
+0009:  BSF    03.5
+000A:  BSF    05.0
+000B:  BCF    03.5
+000C:  BTFSC  05.0
+000D:  GOTO   009
+....................       if(count<maxVal)output_b(++count); 
+000E:  MOVF   11,W
+000F:  SUBWF  10,W
+0010:  BTFSC  03.0
+0011:  GOTO   018
+0012:  INCF   10,F
+0013:  BSF    03.5
+0014:  CLRF   06
+0015:  BCF    03.5
+0016:  MOVF   10,W
+0017:  MOVWF  06
+....................    } 
+....................    if(input(pin_a1)){ 
+0018:  BSF    03.5
+0019:  BSF    05.1
+001A:  BCF    03.5
+001B:  BTFSS  05.1
+001C:  GOTO   02C
+....................       while(input(pin_a1)); 
+001D:  BSF    03.5
+001E:  BSF    05.1
+001F:  BCF    03.5
+0020:  BTFSC  05.1
+0021:  GOTO   01D
+....................       if(count>minVal)output_b(--count); 
+0022:  MOVF   10,W
+0023:  SUBWF  12,W
+0024:  BTFSC  03.0
+0025:  GOTO   02C
+0026:  DECF   10,F
+0027:  BSF    03.5
+0028:  CLRF   06
+0029:  BCF    03.5
+002A:  MOVF   10,W
+002B:  MOVWF  06
+....................    } 
+002C:  GOTO   03B (RETURN)
+.................... } 
+....................  
+....................  
+....................  
+....................  
+....................  
+.................... void main() 
+002D:  MOVF   03,W
+002E:  ANDLW  1F
+002F:  MOVWF  03
+0030:  CLRF   10
+0031:  MOVLW  0A
+0032:  MOVWF  11
+0033:  CLRF   12
+.................... { 
+....................    count=0; 
+0034:  CLRF   10
+....................    output_b(count); 
+0035:  BSF    03.5
+0036:  CLRF   06
+0037:  BCF    03.5
+0038:  MOVF   10,W
+0039:  MOVWF  06
+....................    while(TRUE) 
+....................    { 
+.................... //!      method1(); 
+.................... //!      method2(); 
+....................       method3(); 
+003A:  GOTO   004
+003B:  GOTO   03A
+....................    } 
+....................  
+.................... } 
+003C:  SLEEP
+
+Configuration Fuses:
+   Word  1: 0001   XT NOWDT PUT PROTECT

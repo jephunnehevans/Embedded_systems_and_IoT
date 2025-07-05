@@ -1,0 +1,22 @@
+#include <Serial EEPROM.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      temp = READ_ADC();
+      delay_ms(10);
+      
+      lcd_putc('\f');
+      lcd_gotoxy(1,1);
+      printf(lcd_putc "Temp = %g%cC", temp, 223);
+      
+      if(input(str_pin)){
+         while(input(str_pin));
+         
+      }
+      if(input(rcl_pin)){
+         while(rcl_pin));
+         
+      }
+   }
+}

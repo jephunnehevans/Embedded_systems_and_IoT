@@ -1,0 +1,36 @@
+#include <Solartracker.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      c %= 2;
+      SET_ADC_CHANNEL(c);
+      if(c==1)LDRs = READ_ADC();
+      else LDRn = READ_ADC();
+      
+      lcd_cls(); lcd_ln(1);
+      lcd_putc(" Parralle to Sun");
+      lcd_ln(2);
+      printf(lcd_putc " N=%u, S=%u", LDRn, LDRs);
+      
+      while(((LDRs-LDRn)>5) || ((LDRn-LDRs)>5)){
+         c %= 2;
+         SET_ADC_CHANNEL(c);
+         if(c==1)LDRs = READ_ADC();
+         else LDRn = READ_ADC();
+         
+         lcd_cls(); lcd_ln(1);
+         if(LDRn<LDRs) lcd_putc("Tunrnig South");
+         else if(LDRn>LDRs) lcd_putc("Tunrnig North");
+         else break;
+         lcd_ln(2);
+         printf(lcd_putc "N=%u, S=%u", LDRn, LDRs);
+         
+         delay_ms(100);
+         c++;
+      }
+      
+      delay_ms(100);
+      c++;
+   }
+}

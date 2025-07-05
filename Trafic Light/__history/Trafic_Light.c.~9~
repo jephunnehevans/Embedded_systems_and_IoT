@@ -1,0 +1,9 @@
+#include <Trafic_Light.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+//!      trafficLight(4,1,3);
+      trafficLight(4,1,3,0b00001110,PIN_B1,PIN_B2,PIN_B3);
+   }
+}

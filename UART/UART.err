@@ -1,0 +1,5 @@
+>>> Warning 202 "C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\UART\UART.h" Line 10(15,16): Variable never used:   x
+>>> Warning 202 "C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\UART\UART.h" Line 11(6,17): Variable never used:   letterInput
+      Memory usage:   ROM=3%      RAM=2% - 3%
+      0 Errors,  2 Warnings.
+Build Successful.

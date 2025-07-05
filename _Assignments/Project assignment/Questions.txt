@@ -1,0 +1,23 @@
+for this week, i have given some set of assignments, one design per two days
+
+mon - tues: real time system with schedulling for turning on and off three home appliances
+the system displays real time
+allows user to set on/off time for three different appliances
+monitors for when the different schedulled time equals time of the date to then decide what to do i.e turn on the channel or turn off the channel
+
+wed - thur: a digital thermometer with remote display (bluetooth)
+the system while a thermomter, should send temperature values to a bluetooth module while still displaying same on a display unit of your choices (all of you can decide on  that individually)
+
+fri - sat: a passcode protected safe
+the system should be on lock mode always until a correct combination of code from a keypad is entered, if the entered code is correct, the safe opens momentarily and closes indefinately untill the right combination is entered again.
+
+i expect that this assignments are not just attempted but to be seen working
+circuit diagram first
+software implementation to follow
+pcb design as well
+
+if there be any questions concerning features or system functionalities, please keep them coming in, i will respond to as many as i can.
+
+everything needed to complete all of the assignments are subjects we've taught on and implemented
+
+oya, get to work guys

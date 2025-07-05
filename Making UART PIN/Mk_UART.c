@@ -1,0 +1,9 @@
+#include <Mk_UART.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      j = getc();
+      putc(j);
+   }
+}

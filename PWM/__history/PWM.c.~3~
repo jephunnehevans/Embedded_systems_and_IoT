@@ -1,0 +1,8 @@
+#include <PWM.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      
+   }
+}

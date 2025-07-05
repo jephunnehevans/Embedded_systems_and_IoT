@@ -1,0 +1,52 @@
+#include <16F84A.h>
+#use fast_io(a)
+#use fast_io(b)
+#FUSES XT,NOWDT,PUT,PROTECT
+#use delay(crystal=4000000)
+
+#int_ext
+void isrext(){
+   output_toggle(pin_a0);
+}
+
+void sys_init(){
+   output_a(0);
+   output_b(0);
+   set_tris_a(0);
+   set_tris_b(0b11111111);
+   output_a(0);
+   output_b(0);
+   
+   clear_interrupt(int_ext);
+   enable_interrupts(int_ext);
+   ext_int_edge(h_to_l);
+   enable_interrupts(global);
+   clear_interrupt(int_ext);
+}
+
+void NO_INT(){
+   switch(input_a()){
+      case 1:
+         while(input_a()==1);
+         output_toggle(pin_b1);
+         break;
+      case 2:
+         while(input_a()==2);
+         output_toggle(pin_b2);
+         break;
+      case 4:
+         while(input_a()==4);
+         output_toggle(pin_b3);
+         break;
+      case 8:
+         while(input_a()==8);
+         output_toggle(pin_b4);
+         break;
+      case 16:
+         while(input_a()==16);
+         output_toggle(pin_b5);
+            break;
+         default:
+            break;
+         }
+}

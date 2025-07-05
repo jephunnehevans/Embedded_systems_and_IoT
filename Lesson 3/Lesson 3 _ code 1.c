@@ -1,0 +1,19 @@
+#include <Lesson 3 _ code 1.h>
+
+void main(){
+   output_a(0);
+   output_b(0);
+   set_tris_a(0b11111);
+   set_tris_b(0);
+   output_a(0);
+   output_b(0);
+//!   chris(5);
+   for(;;){
+//!      code1();
+//!      code2();
+//!      code3();
+//!      code4();
+      }
+}
+
+

@@ -1,0 +1,9 @@
+#include <ADC_ASSIGNMENT.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      Volt_M();
+      delay_ms(100);
+   }
+}

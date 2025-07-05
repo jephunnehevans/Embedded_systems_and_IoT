@@ -1,0 +1,10 @@
+#include <16F876A.h>
+#device ADC=8
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,DEBUG,PROTECT
+#use delay(crystal=4000000)
+
+#include "lcd.c"
+

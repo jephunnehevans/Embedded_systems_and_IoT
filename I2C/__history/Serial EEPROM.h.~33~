@@ -1,0 +1,82 @@
+#include <16F876A.h>
+#device ADC=8
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG,PROTECT
+#use delay(crystal=4000000)
+#use i2c(master, sda=pin_c4, scl=pin_c3, fast) 
+
+#define LCD_DATA_PORT getenv("SFR:PORTB")
+#define LCD_ENABLE_PIN  PIN_B3
+#define LCD_RS_PIN      PIN_B1
+#define LCD_RW_PIN      PIN_B2
+#define LCD_DATA4       PIN_B4
+#define LCD_DATA5       PIN_B5
+#define LCD_DATA6       PIN_B6
+#define LCD_DATA7       PIN_B7
+#include "lcd.c"
+
+#define str_pin pin_c0 // store pin
+#define rcl_pin pin_c1 // recall pin
+
+unsigned int8 temp = 0;
+unsigned int16 loc = 0, x = 0;
+
+void lcd_clear(){
+   lcd_putc('\f');
+}
+
+void lcd_line(unsigned int8 x){
+   lcd_gotoxy(1,x);
+}
+
+void sys_init(){
+   output_a(0); output_b(0); output_c(0);
+   set_tris_a(0b111111);
+   set_tris_b(0); set_tris_c(0b00000011);
+   output_a(0); output_b(0); output_c(0);
+   
+   SETUP_ADC(ADC_CLOCK_INTERNAL);
+   SETUP_ADC_PORTS(AN0_AN1_VSS_VREF);
+   SET_ADC_CHANNEL(0);
+   
+   lcd_init(); lcd_clear(); lcd_line(1);
+   printf(lcd_putc "   Temperature   ",);
+   lcd_line(2);
+   printf(lcd_putc "      Logger     ",);
+   delay_ms(3000);
+         
+   lcd_clear(); lcd_line(1);
+   printf(lcd_putc "Measuring");
+   lcd_line(2);
+   printf(lcd_putc "Temperature ...");
+   delay_ms(1000);
+}
+
+void i2c_eeprom_write(unsigned int8 addrh, unsigned int8 addrl, char data){
+   i2c_start(); //start bit
+   i2c_write(0xA0); //chip address + write mode
+   i2c_write(addrh); //higher 8-bits
+   i2c_write(addrl); //lower 8-bits
+   i2c_write(data);  //The data you want to store
+   i2c_stop(); //stop bit
+   delay_ms(5);
+}
+
+char i2c_eeprom_read(unsigned int8 addrh, unsigned int8 addrl){
+char var = 0;
+   i2c_start();
+   i2c_write(0xA0);
+   i2c_write(addrh);
+   i2c_write(addrl);
+   
+   i2c_start();
+   i2c_write(0xA1);
+   
+   var = i2c_read();
+   delay_ms(5);
+   i2c_stop();
+   return var;
+}
+

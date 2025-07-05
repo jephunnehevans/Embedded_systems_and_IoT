@@ -1,0 +1,194 @@
+004-005 @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+015     CCP_1
+015     CCP_1_LOW
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020-021 strtok.save
+022-025 _Randseed
+026     @TRIS_C
+027     num1
+028     num2
+029     sign
+02A-02B n
+02C-02D atoi.s
+02C     lcd_init.i
+02C     @PRINTF_U_899.P1
+02C     sys_init.@SCRATCH1
+02C     @PSTRINGC7_899.@SCRATCH1
+02C     MAIN.@SCRATCH1
+02C     @PSTRINGR_899.@SCRATCH1
+02D-030 lcd_init.LCD_INIT_STRING
+02D     @PRINTF_U_899.P1
+02D     @PSTRINGC7_899.@SCRATCH2
+02D     MAIN.@SCRATCH2
+02D     @PSTRINGR_899.@SCRATCH2
+02E     atoi.result
+02E     @DIV88.P1
+02E     @PSTRINGC7_899.@SCRATCH3
+02E     MAIN.@SCRATCH3
+02F     atoi.sign
+02F     @DIV88.P1
+02F     @PSTRINGC7_899.@SCRATCH4
+02F     MAIN.@SCRATCH4
+030-033 calc.a
+030-033 @PRINTF_L32D_899FPFPF.P1
+030     atoi.base
+030     @PSTRINGCN7_899.P1
+030     @DIV88.@SCRATCH1
+031     atoi.index
+031     lcd_init.@SCRATCH1
+031     @PSTRINGCN7_899.@SCRATCH1
+032     atoi.c
+032     @PSTRINGCN7_899.@SCRATCH2
+033     @MUL88.P1
+033     atoi.@SCRATCH1
+033     @PSTRINGCN7_899.@SCRATCH3
+034     @PRINTF_L32D_899FPFPF.P1
+034     calc.b
+034     @MUL88.P1
+034     atoi.@SCRATCH2
+034     @PSTRINGCN7_899.@SCRATCH4
+035     calc.s
+035     @PRINTF_L32D_899FPFPF.@SCRATCH1
+036-039 @DIVFF.P1
+036-039 @ADDFF.P2
+036-037 @ITOF.P3
+036     @PRINTF_L32D_899FPFPF.@SCRATCH2
+037     @PRINTF_L32D_899FPFPF.@SCRATCH3
+038     @PRINTF_L32D_899FPFPF.@SCRATCH4
+039     @PRINTF_L32D_899FPFPF.@SCRATCH5
+03A-03D @ADDFF.P1
+03A-03D @DIVFF.P2
+03A     @PRINTF_L32D_899FPFPF.@SCRATCH6
+03B     @PRINTF_L32D_899FPFPF.@SCRATCH7
+03C     @PRINTF_L32D_899FPFPF.@SCRATCH8
+03D-040 @FTOSD.P1
+03D     lcd_putc.c
+03D-040 @MULFF.P1
+03D-040 @DIV3232.P2
+03E     lcd_gotoxy.x
+03E     @delay_ms1.P1
+03E     @ADDFF.@SCRATCH1
+03E     @DIVFF.@SCRATCH1
+03F     lcd_gotoxy.y
+03F     @ADDFF.@SCRATCH2
+03F     @DIVFF.@SCRATCH2
+040     lcd_gotoxy.address
+040     @ADDFF.@SCRATCH3
+040     @DIVFF.@SCRATCH3
+041-044 @DIV3232.P1
+041-044 @MULFF.P2
+041     @ADDFF.@SCRATCH4
+041     @DIVFF.@SCRATCH4
+041     lcd_gotoxy.@SCRATCH1
+041     @FTOSD.@SCRATCH1
+042     lcd_send_byte.address
+042     @ADDFF.@SCRATCH5
+042     @DIVFF.@SCRATCH5
+043     lcd_send_byte.n
+043     @ADDFF.@SCRATCH6
+043     @DIVFF.@SCRATCH6
+044     lcd_read_byte.low
+044     @ADDFF.@SCRATCH7
+044     lcd_send_byte.@SCRATCH1
+045     lcd_read_byte.high
+045     lcd_send_nibble.n
+045     @MULFF.@SCRATCH1
+045     @ADDFF.@SCRATCH8
+045     @DIV3232.@SCRATCH1
+046     lcd_read_nibble.n
+046     @MULFF.@SCRATCH2
+046     lcd_read_byte.@SCRATCH1
+046     @DIV3232.@SCRATCH2
+047     @MULFF.@SCRATCH3
+047     lcd_read_nibble.@SCRATCH1
+047     @DIV3232.@SCRATCH3
+048     @MULFF.@SCRATCH4
+048     @DIV3232.@SCRATCH4
+049     @MULFF.@SCRATCH5
+049     @DIV3232.@SCRATCH5
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @const912.call
+00000D  @const938.call
+000013  @delay_ms1
+000028  lcd_send_nibble
+000041  lcd_read_nibble
+000066  lcd_send_byte
+000076  lcd_read_byte
+0000C1  lcd_gotoxy
+0000D3  lcd_putc
+0000FF  sys_init
+000115  lcd_init
+000177  @PSTRINGC7_899
+0001D5  scan_N
+000226  @PSTRINGR_899
+00023C  atoi
+0002AA  @MUL88
+00033A  scan_O
+00035D  @DIV88
+000372  @PRINTF_U_899
+0003A7  @ITOF
+0003C4  @ADDFF
+000505  @MULFF
+00057A  calc
+0005E5  @DIVFF
+0006B1  @PSTRINGCN7_899
+00070A  @DIV3232
+000800  @PRINTF_L32D_899FPFPF
+000829  @FTOSD
+0008F0  @cinit1
+0008F0  MAIN
+0008FF  @cinit2
+0136  StrtoulGO
+0136  StrtolGO
+
+Project Directory:
+    C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Calculator\
+
+Project Files:
+    Calculator.c                                            [26-May-25 14:43  CRC=34E30AC1]
+    Calculator.h                                            [26-May-25 14:40  CRC=3EDC0F79]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F876A.h [12-Nov-13 14:35  CRC=7FE1E080]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stdlib.h [08-Jun-11 14:39  CRC=0B6669CF]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h [16-Jul-10 09:27  CRC=897CEC6C]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h [14-Jul-11 10:13  CRC=23EDEC8F]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h [03-Jan-08 13:55  CRC=2D1F019F]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [19-Sep-13 15:38  CRC=D1A6378A]
+
+Source signature=7CDDAE37
+
+Units:
+    Calculator (main)
+
+Compiler Settings:
+    Processor:      PIC16F876A
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   Calculator.xsym
+    Errors:      Calculator.err
+    Ext Symbols: Calculator.esym
+    INHX8:       Calculator.hex
+    Symbols:     Calculator.sym
+    List:        Calculator.lst
+    Debug/COFF:  Calculator.cof
+    Project:     Calculator.ccspjt
+    Call Tree:   Calculator.tre
+    Statistics:  Calculator.STA

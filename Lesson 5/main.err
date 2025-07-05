@@ -1,0 +1,4 @@
+>>> Warning 202 "C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Lesson 5\main.h" Line 7(15,22): Variable never used:   ccArray
+      Memory usage:   ROM=18%      RAM=25% - 41%
+      0 Errors,  1 Warnings.
+Build Successful.

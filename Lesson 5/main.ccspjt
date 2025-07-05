@@ -1,0 +1,25 @@
+[PROJECT]
+Target=main.hex
+Processor_Text=PIC16F84A
+CCSVerions=5.015
+Compiler=PCM
+CCSVersion=5.015
+[Target Data]
+FileList=main.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Lesson 5\main]
+Type=4
+[mru-list]
+1=main.c
+[Opened Files]
+1=main.c
+2=..\LCD\Lesson LCD.h
+3=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h
+4=..\Arrays\Array_1.c
+5=
+[main.c]
+Type=4
+[Units]
+Count=1
+1=main (main)

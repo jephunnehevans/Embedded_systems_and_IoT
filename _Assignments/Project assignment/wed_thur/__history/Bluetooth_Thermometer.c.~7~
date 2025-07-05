@@ -1,0 +1,13 @@
+#include <Bluetooth_Thermometer.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      temp = READ_ADC();
+      delay_ms(10);
+      putc(254); putc(1);
+      putc(254); putc(00);
+      printf("%u", temp);
+      delay_ms(1000);
+   }
+}

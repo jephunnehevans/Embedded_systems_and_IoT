@@ -1,0 +1,98 @@
+#include <16F84A.h>
+#FUSES XT,NOWDT,PUT,PROTECT
+
+#use delay(crystal=4000000)
+
+unsigned int32 w=0;
+
+void code1(){
+   if(input(pin_a0)){
+         output_high(pin_b0);
+         delay_ms(1000);
+         output_low(pin_b0);
+      }
+      if(input(pin_a1)){
+         output_high(pin_b1);
+         delay_ms(1000);
+         output_low(pin_b1);
+      }
+      if(input(pin_a2)){
+         output_high(pin_b2);
+         delay_ms(1000);
+         output_low(pin_b2);
+      }
+      if(input(pin_a3)){
+         output_high(pin_b3);
+         delay_ms(1000);
+         output_low(pin_b3);
+      }
+      if(input(pin_a4)){
+         output_high(pin_b4);
+         delay_ms(1000);
+         output_low(pin_b4);
+      }
+}
+
+void code2(){
+   if(input(pin_a0)){
+      output_high(pin_b0);
+      delay_ms(1000);
+      output_low(pin_b0);
+      }
+   else if(input(pin_a1)){
+      output_high(pin_b1);
+      delay_ms(1000);
+      output_low(pin_b1);
+      }
+   else if(input(pin_a2)){
+      output_high(pin_b2);
+      delay_ms(1000);
+      output_low(pin_b2);
+      }
+   else if(input(pin_a3)){
+      output_high(pin_b3);
+      delay_ms(1000);
+      output_low(pin_b3);
+      }
+   else if(input(pin_a4)){
+      output_high(pin_b4);
+      delay_ms(1000);
+      output_low(pin_b4);
+      }
+   else{
+   }
+}
+
+void code3(){
+   w = input_a();
+   if(w){
+      output_high(pin_b0);
+      delay_ms(1000);
+      output_low(pin_b0);
+      }
+   else if(w){
+      output_high(pin_b1);
+      delay_ms(1000);
+      output_low(pin_b1);
+      }
+   else if(w){
+      output_high(pin_b2);
+      delay_ms(1000);
+      output_low(pin_b2);
+      }
+   else if(w){
+      output_high(pin_b3);
+      delay_ms(1000);
+      output_low(pin_b3);
+      }
+   else if(w){
+      output_high(pin_b4);
+      delay_ms(1000);
+      output_low(pin_b4);
+      }
+   else{
+   }
+}
+
+
+

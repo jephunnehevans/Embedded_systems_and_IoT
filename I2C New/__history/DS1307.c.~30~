@@ -1,0 +1,34 @@
+#include <DS1307.h>
+
+void main(){
+   sys_init();
+//!   lcd_cls();
+//!   printf(lcd_putc "writing...");
+   
+   while(TRUE){
+      lcd_cls();
+      hrs = RTC_read(0x02);
+      min = fromBCD(RTC_read(0x01));
+      sec = fromBCD(RTC_read(0x00));
+      day = dayS[fromBCD(RTC_read(0x03))];
+      date = fromBCD(RTC_read(0x04));
+      mnt = fromBCD(RTC_read(0x05));
+      yrs = fromBCD(RTC_read(0x06));
+      
+      lcd_ln(1);
+      
+      if(!(64 & hrs)){
+         hrs = fromBCD(hrs & 00111111);
+         printf(lcd_putc "Time: %u:%u:%u", hrs, min, sec);
+      }
+      else{
+         if(32 & hrs) hr12 = 'A';
+         else hr12 = 'P';
+         printf(lcd_putc "Tm: %u:%u:%u %cM", hrs, min, sec, hr12);
+      }
+      
+      lcd_ln(2);
+      printf(lcd_putc "Date: %s %u:%u:%u", day, date, mnt, yrs);
+      delay_ms(100);
+   }
+}

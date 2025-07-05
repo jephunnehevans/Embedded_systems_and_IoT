@@ -1,0 +1,24 @@
+#include <New.h>
+
+void main(){
+   sys_init();
+   
+   output_high(pin_a0);
+   while(TRUE)
+   {
+      output_high(pin_a1);
+      delay_ms(700);
+      output_low(pin_a1);
+      delay_ms(300);
+      
+//!      if(trig==1){
+//!         for(x=0;x<4;x++){
+//!            output_high(pin_a2);
+//!            delay_ms(3000);
+//!            output_low(pin_a2);
+//!            delay_ms(2000);
+//!         }
+//!         trig = 0;
+//!      }
+   }
+}

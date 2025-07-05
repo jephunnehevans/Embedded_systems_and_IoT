@@ -1,0 +1,29 @@
+#include <Solartracker.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      if(c==3){
+         SET_ADC_CHANNEL(4);
+         x = READ_ADC(0);
+      }
+      else if(c==2){
+         SET_ADC_CHANNEL(2);
+         x = READ_ADC(0);
+      }
+      else if(c==1){
+         SET_ADC_CHANNEL(1);
+         x = READ_ADC(0);
+      }
+      else{
+         SET_ADC_CHANNEL(0);
+         x = READ_ADC(0);
+      }
+      
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Voltage = %u", x);
+      delay_ms(100);
+      
+      //c++;
+   }
+}

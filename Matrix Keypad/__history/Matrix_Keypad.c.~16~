@@ -1,0 +1,56 @@
+#include <Matrix_Keypad.h>
+
+void main(){
+   sys_init();
+   lcd_putc('\f');
+   while(TRUE){
+      output_b(255);
+      output_low(pin_b4);
+      lcd_gotoxy(1, 1);
+      if(!input(pin_b0)){
+         while(!input(pin_b0)); lcd_putc('1');
+      }
+      if(!input(pin_b1)){
+         while(!input(pin_b1)); lcd_putc('4');
+      }
+      if(!input(pin_b2)){
+         while(!input(pin_b2)); lcd_putc('7');
+      }
+      if(!input(pin_b3)){
+         while(!input(pin_b3)); lcd_putc('*');
+      }
+      
+      output_b(255);
+      output_low(pin_b5);
+      lcd_gotoxy(1, 1);
+      if(!input(pin_b0)){
+         while(!input(pin_b0)); lcd_putc('2');
+      }
+      if(!input(pin_b1)){
+         while(!input(pin_b1)); lcd_putc('5');
+      }
+      if(!input(pin_b2)){
+         while(!input(pin_b2)); lcd_putc('8');
+      }
+      if(!input(pin_b3)){
+         while(!input(pin_b3)); lcd_putc('0');
+      }
+      
+      
+      output_b(255);
+      output_low(pin_b6);
+      lcd_gotoxy(1, 1);
+      if(!input(pin_b0)){
+         while(!input(pin_b0)); lcd_putc('3');
+      }
+      if(!input(pin_b1)){
+         while(!input(pin_b1)); lcd_putc('6');
+      }
+      if(!input(pin_b2)){
+         while(!input(pin_b2)); lcd_putc('9');
+      }
+      if(!input(pin_b3)){
+         while(!input(pin_b3)); lcd_putc('#');
+      }
+   }
+}

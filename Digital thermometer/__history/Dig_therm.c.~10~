@@ -1,0 +1,12 @@
+#include <Dig_therm.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      tempVal = READ_ADC();
+      delay_ms(10);
+
+      showTemp(tempVal);
+      
+   }
+}

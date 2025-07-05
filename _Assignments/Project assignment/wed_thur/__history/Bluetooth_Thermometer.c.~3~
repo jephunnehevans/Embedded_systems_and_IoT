@@ -1,0 +1,8 @@
+#include <Bluetooth_Thermometer.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      
+   }
+}

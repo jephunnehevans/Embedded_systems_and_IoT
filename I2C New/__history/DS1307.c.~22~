@@ -1,0 +1,24 @@
+#include <DS1307.h>
+
+void main(){
+   sys_init();
+//!   lcd_cls();
+//!   printf(lcd_putc "writing...");
+   
+   RTC_write(0x00,0b00110000);
+   RTC_write(0x01,0b01010000);
+   RTC_write(0x02,0b01000001);
+   RTC_write(0x03,0b00000100);
+   RTC_write(0x04,0b00000100);
+   RTC_write(0x05,0b00000110);
+   RTC_write(0x06,0b00100101);
+   while(TRUE){
+//!      lcd_cls(); lcd_ln(1);
+//!      printf(lcd_putc "Time: %u:%u:%u", RTC_read(0x02),
+//!      RTC_read(0x01), RTC_read(0x00));
+//!      lcd_ln(2);
+//!      printf(lcd_putc "Date: %u:%u:%u", RTC_read(0x04),
+//!      RTC_read(0x05), RTC_read(0x06));
+//!      delay_ms(100);
+   }
+}

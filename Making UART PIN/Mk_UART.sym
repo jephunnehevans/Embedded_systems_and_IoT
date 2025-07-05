@@ -1,0 +1,54 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+009-00A @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+010     j
+011     @GETCH_1_.@SCRATCH1
+011     sys_init.@SCRATCH1
+011     @cinit1.@SCRATCH1
+012     @PUTCHAR_1_.P1
+012     @cinit1.@SCRATCH2
+
+ROM Allocation:
+000004  @const510.call
+000010  @PUTCHAR_1_
+000032  sys_init
+000052  @GETCH_1_
+000077  MAIN
+000077  @cinit1
+00007F  @cinit2
+
+Project Directory:
+    C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Making UART PIN\
+
+Project Files:
+    Mk_UART.c                                               [22-May-25 17:08  CRC=00000000]
+    Mk_UART.h                                               [22-May-25 17:06  CRC=D63E48F4]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h [12-Nov-13 14:34  CRC=4E09ACDB]
+
+Source signature=7251A2AA
+
+Units:
+    Mk_UART (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   Mk_UART.xsym
+    Errors:      Mk_UART.err
+    Ext Symbols: Mk_UART.esym
+    INHX8:       Mk_UART.hex
+    Symbols:     Mk_UART.sym
+    List:        Mk_UART.lst
+    Debug/COFF:  Mk_UART.cof
+    Project:     Mk_UART.ccspjt
+    Call Tree:   Mk_UART.tre
+    Statistics:  Mk_UART.STA

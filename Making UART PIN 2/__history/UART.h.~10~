@@ -1,0 +1,33 @@
+#include <16F876A.h>
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG,PROTECT
+#use delay(crystal=4000000)
+#use rs232(UART1)
+#use rs232(baud=9600,parity=N,xmit=pin_b0,rcv=pin_b1,stream=My_terminal)
+
+unsigned int32 x=0;
+char letterInput="";
+
+void sys_init(){
+   output_b(0); output_c(0);
+   set_tris_a(0);
+   set_tris_b(0b01000000);
+   set_tris_c(0b10000000);
+   output_b(0); output_c(0);
+   
+   output_high(pin_b0);
+   output_high(pin_b1);
+   
+   setup_uart(2400);
+   delay_ms(1000);
+   
+//!   sprintf(lcd "Start");
+//!   delay_ms(1000);
+   
+   putc(254); putc(1);
+   putc(254); putc(00);
+   printf("Welcome");
+   delay_ms(1000);
+}

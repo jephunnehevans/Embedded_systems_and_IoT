@@ -1,0 +1,15 @@
+#include <PWM.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      lcd_ln(1);
+      printf(lcd_putc "Tpwm = %u", Tpwm);
+      lcd_ln(2);
+      printf(lcd_putc "On_Tm = %u", Pt);
+      lcd_ln(3);
+      printf(lcd_putc "Temp = %f", Temp);
+      lcd_ln(4);
+      printf(lcd_putc "Speed = %u", speed);
+   }
+}

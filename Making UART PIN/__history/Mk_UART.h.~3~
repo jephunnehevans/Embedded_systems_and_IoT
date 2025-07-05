@@ -1,0 +1,7 @@
+#include <16F84A.h>
+#FUSES XT,NOWDT,PUT,PROTECT
+#use delay(crystal=4000000)
+#use rs232(baud=9600, parity=N)
+#use rs232(xmit=pin_a0, rev=pin_b1)
+
+

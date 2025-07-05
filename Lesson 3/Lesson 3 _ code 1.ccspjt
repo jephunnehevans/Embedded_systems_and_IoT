@@ -1,0 +1,24 @@
+[PROJECT]
+Target=Lesson 3 _ code 1.hex
+Processor_Text=PIC16F84A
+CCSVerions=5.015
+Compiler=PCM
+CCSVersion=5.015
+[Target Data]
+FileList=Lesson 3 _ code 1.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Lesson 3\Lesson 3 _ code 1]
+Type=4
+[mru-list]
+1=Lesson 3 _ code 1.c
+[Opened Files]
+1=Lesson 3 _ code 1.c
+2=Lesson 3 _ code 1.h
+3=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h
+4=
+[Lesson 3 _ code 1.c]
+Type=4
+[Units]
+Count=1
+1=Lesson 3 _ code 1 (main)

@@ -1,0 +1,19 @@
+#include <Solartracker.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      SET_ADC_CHANNEL(c);
+      if(c==3)LDRw = READ_ADC();
+      else if(c==2)LDRe = READ_ADC();
+      else if(c==2)LDRs = READ_ADC();
+      else LDRn = READ_ADC();
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "N=%u, S=%u", LDRn, LDRs);
+      lcd_ln(2);
+      printf(lcd_putc "E=%u, W=%u", LDRe, LDRw);
+      delay_ms(100);
+      
+      c++;
+   }
+}

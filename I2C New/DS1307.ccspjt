@@ -1,0 +1,25 @@
+[PROJECT]
+Target=DS1307.hex
+Processor_Text=PIC16F876A
+CCSVerions=5.015
+Compiler=PCM
+CCSVersion=5.015
+[Target Data]
+FileList=DS1307.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\I2C New\DS1307]
+Type=4
+[mru-list]
+1=DS1307.c
+[Opened Files]
+1=DS1307.c
+2=DS1307.h
+3=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F876A.h
+4=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+5=
+[DS1307.c]
+Type=4
+[Units]
+Count=1
+1=DS1307 (main)

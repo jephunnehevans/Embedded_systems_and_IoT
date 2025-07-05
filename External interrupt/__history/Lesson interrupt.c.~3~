@@ -1,0 +1,38 @@
+#include <Lesson interrupt.h>
+
+void main(){
+   output_a(0);
+   output_b(0);
+   set_tris_a(0b11111);
+   set_tris_b(0);
+   output_a(0);
+   output_b(0);
+   
+   while(TRUE)
+   {
+      know = input_a();
+      switch(know){
+         case 1:
+            toggle(pin_b1);
+            break;
+         case 2:
+            toggle(pin_b2);
+            break;
+         case 4:
+            toggle(pin_b3);
+            break;
+         case 8:
+            toggle(pin_b4);
+            break;
+         case 16:
+            toggle(pin_b5);
+            break;
+         case 32:
+            toggle(pin_b6);
+            break;
+         default:
+            break;
+         
+   }
+
+}

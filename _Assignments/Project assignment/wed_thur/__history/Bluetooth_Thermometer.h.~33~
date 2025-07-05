@@ -1,0 +1,77 @@
+#include <16F876A.h>
+#device ADC=8
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG,PROTECT
+#use delay(crystal=4000000)
+#use rs232(UART1)
+
+#define unit_pin pin_c2
+#define tens_pin pin_c3
+#define hnds_pin pin_c4
+
+unsigned int8 f = 0;
+unsigned int16 temp=0;
+signed int16 t=0;
+
+unsigned int8 display(unsigned int8 digit){
+unsigned int8 nums[11] = {63,6,91,79,102,109,124,7,127,103};
+   return nums[digit];
+}
+
+#INT_TIMER1
+void isrtimer0(){
+   SET_TIMER1(230);
+   f = (++f)%3;
+   
+   if(f == 0){
+      output_low(unit_pin);
+      output_low(tens_pin);
+      output_low(hnds_pin);
+      output_b(~display(temp % 10));
+      output_high(unit_pin);
+   }
+   else if(f == 1){
+      output_low(unit_pin);
+      output_low(tens_pin);
+      output_low(hnds_pin);
+      output_b(~display((temp / 10) - ((temp / 100) * 10)));
+      output_high(tens_pin);
+   }
+   else if(f == 2){
+      output_low(unit_pin);
+      output_low(tens_pin);
+      output_low(hnds_pin);
+      if(t>=0) output_b(~display(temp / 100));
+      else output_b(0b00111111);
+      output_high(hnds_pin);
+   }
+}
+
+void sys_init(){
+   output_a(0); output_b(0);  output_c(0);
+   set_tris_a(0b111111);
+   set_tris_b(0); set_tris_c(0);
+   output_a(0); output_b(0);  output_c(0);
+   
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_256 | T0_8_BIT);
+   SET_TIMER0(230);
+   
+   CLEAR_INTERRUPT(INT_TIMER0);
+   ENABLE_INTERRUPTS(INT_TIMER0);
+   ENABLE_INTERRUPTS(GLOBAL);
+   
+   SETUP_ADC(ADC_CLOCK_INTERNAL);
+   SETUP_ADC_PORTS(AN0_AN1_VSS_VREF);
+   SET_ADC_CHANNEL(1);
+   
+   setup_uart(9600);
+   delay_ms(1000);
+   
+   putc(254); putc(1);
+   putc(254); putc(00);
+   printf("Welcome");
+   delay_ms(1000);
+}
+

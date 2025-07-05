@@ -1,0 +1,59 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+009-00A @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018.0   trig
+019     x
+01A     MAIN.@SCRATCH1
+01B     @delay_ms1.P1
+
+ROM Allocation:
+000036  isrext
+00003A  sys_init
+00004D  @delay_ms1
+000061  MAIN
+000061  @cinit1
+000066  @cinit2
+
+Project Directory:
+    C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\New folder\New\
+
+Project Files:
+    New.c                                                   [14-May-25 14:53  CRC=BA5D4A97]
+    New.h                                                   [14-May-25 14:53  CRC=63E4E34E]
+    ..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h [12-Nov-13 14:34  CRC=4E09ACDB]
+
+Source signature=BA55879B
+
+Units:
+    New (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   New.xsym
+    Errors:      New.err
+    Ext Symbols: New.esym
+    INHX8:       New.hex
+    Symbols:     New.sym
+    List:        New.lst
+    Debug/COFF:  New.cof
+    Project:     New.ccspjt
+    Call Tree:   New.tre
+    Statistics:  New.STA

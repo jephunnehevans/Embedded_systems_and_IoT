@@ -1,0 +1,8 @@
+#include <Calculator.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      
+   }
+}

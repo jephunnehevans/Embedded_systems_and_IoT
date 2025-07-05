@@ -1,0 +1,17 @@
+#include <Multiplexing.h>
+
+void main(){
+
+   while(TRUE){
+      if(input(inc)){
+         while(input(inc));
+         counter++;
+         if(counter>99)counter=99;
+      }
+      if(input(dec)){
+         while(input(dec));
+         counter--;
+         if(counter<1 || counter>99)counter=0;
+      }
+   }
+}

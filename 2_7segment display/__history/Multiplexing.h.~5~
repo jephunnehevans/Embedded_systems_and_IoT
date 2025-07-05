@@ -1,0 +1,24 @@
+#include <16F84A.h>
+#use fast_io(a)
+#use fast_io(b)
+#FUSES XT,,NOWDT,PUT,PROTECT
+#use delay(crystal=4000000)
+
+#define inc pin_a3
+#define dec pin_a4
+
+unsigned int8 counter=0;
+
+void sys_init(){
+   output_a(0); output_b(0);
+   set_tris_a(0b000011); set_tris_b(0);
+   output_a(0); output_b(0);
+   
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_64 | T0_8_BIT);
+   SET_TIMER0(99);
+   
+   CLEAR_INTERRUPT(INT_TIMER0);
+   ENABLE_INTERRUPTS(INT_TIMER0);
+   ENABLE_INTERRUPTS(GLOBAL)
+}
+

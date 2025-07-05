@@ -1,0 +1,307 @@
+CCS PCM C Compiler, Version 5.015, 5967               07-May-25 17:50
+
+               Filename:   C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Lesson 5\main.lst
+
+               ROM used:   188 words (18%)
+                           Largest free fragment is 836
+               RAM used:   17 (25%) at main() level
+                           28 (41%) worst case
+               Stack used: 1 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   033
+0003:  NOP
+.................... #include <main.h> 
+.................... #include <16F84A.h> 
+.................... //////////// Standard Header file for the PIC16F84A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F84A 
+....................  
+.................... #list 
+....................  
+.................... #FUSES XT,NOWDT,PUT,PROTECT 
+....................  
+.................... #use delay(crystal=4000000) 
+0004:  MOVLW  1C
+0005:  MOVWF  04
+0006:  MOVF   00,W
+0007:  BTFSC  03.2
+0008:  GOTO   017
+0009:  MOVLW  01
+000A:  MOVWF  0D
+000B:  CLRF   0C
+000C:  DECFSZ 0C,F
+000D:  GOTO   00C
+000E:  DECFSZ 0D,F
+000F:  GOTO   00B
+0010:  MOVLW  4A
+0011:  MOVWF  0C
+0012:  DECFSZ 0C,F
+0013:  GOTO   012
+0014:  GOTO   015
+0015:  DECFSZ 00,F
+0016:  GOTO   009
+0017:  RETURN
+....................  
+.................... unsigned int8 counter=0; 
+.................... unsigned int8 ccArray[11]={63, 6, 91, 79, 102, 109, 124, 7, 127, 103}; 
+*
+0037:  MOVLW  3F
+0038:  MOVWF  11
+0039:  MOVLW  06
+003A:  MOVWF  12
+003B:  MOVLW  5B
+003C:  MOVWF  13
+003D:  MOVLW  4F
+003E:  MOVWF  14
+003F:  MOVLW  66
+0040:  MOVWF  15
+0041:  MOVLW  6D
+0042:  MOVWF  16
+0043:  MOVLW  7C
+0044:  MOVWF  17
+0045:  MOVLW  07
+0046:  MOVWF  18
+0047:  MOVLW  7F
+0048:  MOVWF  19
+0049:  MOVLW  67
+004A:  MOVWF  1A
+004B:  CLRF   1B
+....................  
+.................... void CC_switch(unsigned int8 inp){ 
+....................    switch(inp){ 
+....................       case 0: 
+....................          output_b(63); 
+....................          break; 
+....................       case 1: 
+....................          output_b(6); 
+....................          break; 
+....................       case 2: 
+....................          output_b(91); 
+....................          break; 
+....................       case 3: 
+....................          output_b(79); 
+....................          break; 
+....................       case 4: 
+....................          output_b(102); 
+....................          break; 
+....................       case 5: 
+....................          output_b(109); 
+....................          break; 
+....................       case 6: 
+....................          output_b(124); 
+....................          break; 
+....................       case 7: 
+....................          output_b(7); 
+....................          break; 
+....................       case 8: 
+....................          output_b(127); 
+....................          break; 
+....................       case 9: 
+....................          output_b(103); 
+....................          break; 
+....................       default: break; 
+....................    } 
+.................... } 
+....................  
+.................... unsigned int8 CC_array(unsigned int8 inp){//to save space in the RAM 
+.................... unsigned int8 ccArray2[11]={63, 6, 91, 79, 102, 109, 124, 7, 127, 103}; 
+*
+0018:  MOVLW  3F
+0019:  MOVWF  1D
+001A:  MOVLW  06
+001B:  MOVWF  1E
+001C:  MOVLW  5B
+001D:  MOVWF  1F
+001E:  MOVLW  4F
+001F:  MOVWF  20
+0020:  MOVLW  66
+0021:  MOVWF  21
+0022:  MOVLW  6D
+0023:  MOVWF  22
+0024:  MOVLW  7C
+0025:  MOVWF  23
+0026:  MOVLW  07
+0027:  MOVWF  24
+0028:  MOVLW  7F
+0029:  MOVWF  25
+002A:  MOVLW  67
+002B:  MOVWF  26
+002C:  CLRF   27
+....................    return ccArray2[inp]; 
+002D:  MOVLW  1D
+002E:  ADDWF  1C,W
+002F:  MOVWF  04
+0030:  MOVF   00,W
+0031:  MOVWF  0D
+0032:  GOTO   06C (RETURN)
+.................... } 
+....................  
+....................  
+....................  
+.................... void main(){ 
+0033:  MOVF   03,W
+0034:  ANDLW  1F
+0035:  MOVWF  03
+0036:  CLRF   10
+....................    output_a(0); 
+*
+004C:  BSF    03.5
+004D:  CLRF   05
+004E:  BCF    03.5
+004F:  CLRF   05
+....................    output_b(0); 
+0050:  BSF    03.5
+0051:  CLRF   06
+0052:  BCF    03.5
+0053:  CLRF   06
+....................    set_tris_a(0b11111); 
+0054:  MOVLW  1F
+0055:  BSF    03.5
+0056:  MOVWF  05
+....................    set_tris_b(0); 
+0057:  MOVLW  00
+0058:  MOVWF  06
+....................    output_a(0); 
+0059:  CLRF   05
+005A:  BCF    03.5
+005B:  CLRF   05
+....................    output_b(0); 
+005C:  BSF    03.5
+005D:  CLRF   06
+005E:  BCF    03.5
+005F:  CLRF   06
+....................     
+....................    counter = read_eeprom(0); 
+0060:  CLRF   09
+0061:  BSF    03.5
+0062:  BSF    08.0
+0063:  BCF    03.5
+0064:  MOVF   08,W
+0065:  MOVWF  10
+....................    delay_ms(100); 
+0066:  MOVLW  64
+0067:  MOVWF  1C
+0068:  CALL   004
+.................... //!   CC_switch(counter); 
+....................    while(TRUE) 
+....................    { 
+.................... //!      output_b(ccArray[counter]); 
+....................       output_b(CC_array(counter)); 
+0069:  MOVF   10,W
+006A:  MOVWF  1C
+006B:  GOTO   018
+006C:  BSF    03.5
+006D:  CLRF   06
+006E:  BCF    03.5
+006F:  MOVF   0D,W
+0070:  MOVWF  06
+....................       if(input(pin_a0)){ 
+0071:  BSF    03.5
+0072:  BSF    05.0
+0073:  BCF    03.5
+0074:  BTFSS  05.0
+0075:  GOTO   096
+....................          while(input(pin_a0)); 
+0076:  BSF    03.5
+0077:  BSF    05.0
+0078:  BCF    03.5
+0079:  BTFSC  05.0
+007A:  GOTO   076
+....................          if(counter<9){ 
+007B:  MOVF   10,W
+007C:  SUBLW  08
+007D:  BTFSC  03.0
+.................... //!            CC_switch(++counter); 
+....................             counter++; 
+007E:  INCF   10,F
+....................          } 
+....................          write_eeprom(0, counter); 
+007F:  MOVF   0B,W
+0080:  MOVWF  0C
+0081:  BCF    0B.7
+0082:  CLRF   09
+0083:  MOVF   10,W
+0084:  MOVWF  08
+0085:  BSF    03.5
+0086:  BSF    08.2
+0087:  MOVLW  55
+0088:  MOVWF  09
+0089:  MOVLW  AA
+008A:  MOVWF  09
+008B:  BSF    08.1
+008C:  BTFSC  08.1
+008D:  GOTO   08C
+008E:  BCF    08.2
+008F:  BCF    03.5
+0090:  MOVF   0C,W
+0091:  BTFSC  0C.7
+0092:  MOVWF  0B
+....................          delay_ms(100); 
+0093:  MOVLW  64
+0094:  MOVWF  1C
+0095:  CALL   004
+....................       } 
+....................       if(input(pin_a1)){ 
+0096:  BSF    03.5
+0097:  BSF    05.1
+0098:  BCF    03.5
+0099:  BTFSS  05.1
+009A:  GOTO   0BA
+....................          while(input(pin_a1)); 
+009B:  BSF    03.5
+009C:  BSF    05.1
+009D:  BCF    03.5
+009E:  BTFSC  05.1
+009F:  GOTO   09B
+....................          if(counter>0){ 
+00A0:  MOVF   10,F
+00A1:  BTFSS  03.2
+.................... //!            CC_switch(--counter); 
+....................             counter--; 
+00A2:  DECF   10,F
+....................          } 
+....................          write_eeprom(0, counter), 
+....................          delay_ms(100); 
+00A3:  MOVF   0B,W
+00A4:  MOVWF  0C
+00A5:  BCF    0B.7
+00A6:  CLRF   09
+00A7:  MOVF   10,W
+00A8:  MOVWF  08
+00A9:  BSF    03.5
+00AA:  BSF    08.2
+00AB:  MOVLW  55
+00AC:  MOVWF  09
+00AD:  MOVLW  AA
+00AE:  MOVWF  09
+00AF:  BSF    08.1
+00B0:  BTFSC  08.1
+00B1:  GOTO   0B0
+00B2:  BCF    08.2
+00B3:  BCF    03.5
+00B4:  MOVF   0C,W
+00B5:  BTFSC  0C.7
+00B6:  MOVWF  0B
+00B7:  MOVLW  64
+00B8:  MOVWF  1C
+00B9:  CALL   004
+....................       } 
+00BA:  GOTO   069
+....................    } 
+.................... } 
+00BB:  SLEEP
+
+Configuration Fuses:
+   Word  1: 0001   XT NOWDT PUT PROTECT

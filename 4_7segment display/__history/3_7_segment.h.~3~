@@ -1,0 +1,61 @@
+#include <16F84A.h>
+#use fast_io(a)
+#use fast_io(b)
+#FUSES XT,NOWDT,PUT,PROTECT
+#use delay(crystal=4000000)
+
+
+#define inc      pin_a3
+#define dec      pin_a4
+#define unit_pin pin_a0
+#define tens_pin pin_a1
+#define hnds_pin pin_a1
+
+unsigned int8 counter=0, flag=0;
+
+unsigned int8 display(unsigned int8 digit){
+unsigned int8 nums[11] = {63,6,91,79,102,109,124,7,127,103};
+   return nums[digit];
+}
+
+#int_timer0
+void isrtimer0(){
+   SET_TIMER0(99);
+   flag = (++flag)%3;
+   if(flag == 2){
+      output_high(unit_pin);
+      output_high(tens_pin);
+      output_high(hnds_pin);
+      output_b(display(counter % 10));
+      output_low(unit_pin);
+   }
+   else if (flag == 1){
+      output_high(unit_pin);
+      output_high(tens_pin);
+      output_high(hnds_pin);
+      output_b(display((counter / 10) - ((counter / 100) * 10));
+      output_low(unit_pin);
+   }
+   else{
+      output_high(unit_pin);
+      output_high(tens_pin);
+      output_high(hnds_pin);
+      output_b(display(counter / 100));
+      output_low(hnds_pin);
+   }
+}
+
+void sys_init(){
+   output_a(0); output_b(0);
+   set_tris_a(0b110000); set_tris_b(0);
+   output_a(0); output_b(0);
+   
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_256 | T0_8_BIT);
+   SET_TIMER0(230);
+   
+   CLEAR_INTERRUPT(INT_TIMER0);
+   ENABLE_INTERRUPTS(INT_TIMER0);
+   ENABLE_INTERRUPTS(GLOBAL);
+}
+
+

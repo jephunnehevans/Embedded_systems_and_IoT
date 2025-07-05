@@ -1,0 +1,76 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+009-00A @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018     flag
+019-01A counter
+01B     isrtimer0.unit
+01C     isrtimer0.thnd
+01D     isrtimer0.dis
+01E     isrtimer0.tens
+01F     isrtimer0.hnds
+020     display.digit
+020     isrtimer0.@SCRATCH1
+021-02B display.nums
+021     isrtimer0.@SCRATCH2
+022-023 @DIV1616.P1
+022     isrtimer0.@SCRATCH3
+023     isrtimer0.@SCRATCH4
+024-025 @DIV1616.P1
+024-025 @MUL1616.P2
+026-027 @MUL1616.P1
+026     @DIV1616.@SCRATCH1
+028     @MUL1616.@SCRATCH1
+
+ROM Allocation:
+000036  @DIV1616
+00005B  @MUL1616
+000070  display
+00008B  isrtimer0
+00012E  sys_init
+000144  MAIN
+000144  @cinit1
+00014B  @cinit2
+
+Project Directory:
+    C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\4_7segment display\
+
+Project Files:
+    3_7_segment.c                                           [27-May-25 11:58  CRC=D8102B21]
+    3_7_segment.h                                           [27-May-25 13:03  CRC=18D91DDD]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h [12-Nov-13 14:34  CRC=4E09ACDB]
+
+Source signature=8CFCA2B4
+
+Units:
+    3_7_segment (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   3_7_segment.xsym
+    Errors:      3_7_segment.err
+    Ext Symbols: 3_7_segment.esym
+    INHX8:       3_7_segment.hex
+    Symbols:     3_7_segment.sym
+    List:        3_7_segment.lst
+    Debug/COFF:  3_7_segment.cof
+    Project:     3_7_segment.ccspjt
+    Call Tree:   3_7_segment.tre
+    Statistics:  3_7_segment.STA

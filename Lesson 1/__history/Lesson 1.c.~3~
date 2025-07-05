@@ -1,0 +1,18 @@
+#include <Lesson 1.h>
+
+
+
+void main()
+{
+   sys_init();
+   while(TRUE)
+   {
+      if(input(pin_a0)==0){
+         for(y=0;y=7;y++){
+            output_toggle(pin_b3);
+            delay_ms(300);
+            }
+      }
+   }
+
+}

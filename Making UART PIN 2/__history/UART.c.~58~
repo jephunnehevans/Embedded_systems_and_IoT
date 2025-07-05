@@ -1,0 +1,26 @@
+#include <UART.h>
+
+void main(){
+   sys_init();
+   fprintf(My_terminal, "Welcome to My Terminal\n\r>>");
+   while(TRUE){
+      putc(254); putc(1);
+      putc(254); putc(00);
+      printf("Type in Terminal");
+      
+      putc(254); putc(192);
+      printf("%Lu ASCI: %u & Char: %c", x, letterInput, letterInput);
+      
+      letterInput = getc(My_terminal);
+      
+      fprintf(My_terminal, "%c", letterInput);
+      
+      if((int)letterInput==13){
+         fprintf(My_terminal, "The length of your string is %Lu"x);
+         x=0;// letterInput = "";
+         fprintf(My_terminal, "\n\r>>");
+      }
+      else if((int)letterInput!='o') x++;
+      else ;
+   }
+}

@@ -1,0 +1,39 @@
+#include <16F876A.h>
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,DEBUG,NODEBUG PROTECT,
+#use delay(crystal=4000000)
+
+#define LCD_DATA_PORT getenv("SFR:PORTC")
+#define LCD_ENABLE_PIN  PIN_C3
+#define LCD_RS_PIN      PIN_C1
+#define LCD_RW_PIN      PIN_C2
+#define LCD_DATA4       PIN_C4
+#define LCD_DATA5       PIN_C5
+#define LCD_DATA6       PIN_C6
+#define LCD_DATA7       PIN_C7
+#include "lcd.c"
+
+unsigned int8 x=0;
+
+void sys_init(){
+   output_a(0); output_b(0); output_c(0);
+   set_tris_b(0b00001111); set_tris_c(0);
+   output_a(0); output_b(0); output_c(0);
+   
+   PORT_B_PULLUPS(TRUE);
+   delay_ms(1000);
+   
+   lcd_init();
+   for(x=0; x<=100; x++){
+      lcd_putc('\f');
+      lcd_gotoxy(1,1);
+      lcd_putc("Booting ...");
+      lcd_gotoxy(1,2);
+      printf(lcd_putc "%u%", x);
+      delay_ms(50);
+   }
+   delay_ms(400);
+}
+

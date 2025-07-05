@@ -1,0 +1,52 @@
+#include <16F84A.h>
+#use fast_io(a)
+#use fast_io(b)
+#FUSES XT,,NOWDT,PUT,PROTECT
+#use delay(crystal=4000000)
+
+#define inc      pin_a3
+#define dec      pin_a4
+#define unit_pin pin_a0
+#define tens pin pin_a1
+
+unsigned int8 counter=0; unit=0; tens=0;
+unsigned int1 flag=0;
+
+unsigned int8 display(unsigned int8 digit){
+unsigned int8 nums[11] = {63,6,91,79,102,109,124,7,127,103};
+   return nums[digit];
+}
+
+#int_timer0
+void isrtimer0(){
+   SET_TIMER0(99);
+   unit = counter % 10;
+   tens = counter / 10;
+   flag = ~ flag;
+   if(flag){
+      output_high(PIN_A0);
+      output_high(PIN_A1);
+      output_b(display(unit));
+      output_b(unit_pin);
+   }
+   else{
+      output_high(PIN_A0);
+      output_high(PIN_A1);
+      output_b(display(tens));
+      output_b(tens_pin);
+   }
+}
+
+void sys_init(){
+   output_a(0); output_b(0);
+   set_tris_a(0b000011); set_tris_b(0);
+   output_a(0); output_b(0);
+   
+   SETUP_TIMER_0(T0_INTERNAL | T0_DIV_64 | T0_8_BIT);
+   SET_TIMER0(99);
+   
+   CLEAR_INTERRUPT(INT_TIMER0);
+   ENABLE_INTERRUPTS(INT_TIMER0);
+   ENABLE_INTERRUPTS(GLOBAL);
+}
+

@@ -1,0 +1,114 @@
+#include <16F876A.h>
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES ,XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG,PROTECT
+#use delay(crystal=4000000)
+#use I2C(master, sda=pin_c4, scl=pin_c3, fast)
+
+#define LCD_DATA_PORT getenv("SFR:PORTB")
+#define LCD_ENABLE_PIN  PIN_B3
+#define LCD_RS_PIN      PIN_B1
+#define LCD_RW_PIN      PIN_B2
+#define LCD_DATA4       PIN_B4
+#define LCD_DATA5       PIN_B5
+#define LCD_DATA6       PIN_B6
+#define LCD_DATA7       PIN_B7
+#include "lcd.c"
+
+//!unsigned int8 hr=8, mn=50, sc=30, dy=4, dt=4, mt=6, yr=25;
+
+void lcd_cls(){
+   lcd_putc('\f');
+}
+
+void lcd_ln(unsigned int8 l){
+   lcd_gotoxy(1, l);
+}
+
+void sys_init(){
+   output_a(0); output_b(0); output_c(0);
+   set_tris_b(0), set_tris_c(0b00011000);
+   output_a(0); output_b(0); output_c(0);
+   
+   lcd_init(); lcd_cls(); lcd_ln(1);
+   printf(lcd_putc "botting...");
+   delay_ms(1000);
+}
+
+//!unsigned int8 toBCD(unsigned int8 num){
+//!   return make8(num/10, num%10);
+//!}
+
+void RTC_write(unsigned int8 addrl, char data){
+   i2c_start(); //start bit
+   i2c_write(0x68); //chip address + write mode
+   i2c_write(addrh); //higher 8-bits
+   i2c_write(addrl); //lower 8-bits
+   i2c_write(data);  //The data you want to store
+   i2c_stop(); //stop bit
+   delay_ms(5);
+}
+//RTC_write(0b00110000,0b01010000,0b00001011,0b00000100,0b00000100,0b00000110,
+//   0b00100101);
+RTC_write(addrL=0x00,data=0b00110000);
+RTC_write(addrL=0x01,data=0b01010000);
+RTC_write(addrL=0x02,data=0b00001011);
+RTC_write(addrL=0x03,data=0b00000100);
+RTC_write(addrL=0x04,data=0b00000100);
+RTC_write(addrL=0x05,data=0b00000100);
+RTC_write(addrL=0x06,data=0b00000110);
+RTC_write(addrL=0x07,data=0b00100101);
+
+//!void RTC_write(unsigned int8 sc, mn, hr, dy, dt, mt, yr){
+//!   i2c_start();
+//!   i2c_write(0x68);
+//!   
+//!   i2c_write(00);
+//!   i2c_write(sc);
+//!   i2c_write(01);
+//!   i2c_write(mn);
+//!   i2c_write(02);
+//!   i2c_write(hr);
+//!   i2c_write(03);
+//!   i2c_write(dy);
+//!   i2c_write(04);
+//!   i2c_write(dt);
+//!   i2c_write(05);
+//!   i2c_write(mt);
+//!   i2c_write(06);
+//!   i2c_write(yr);
+//!   i2c_write(07);
+//!   i2c_write(sw);
+//!   
+//!   i2c_stop();
+//!}
+//!
+//!void RTC_read(unsigned int8 bit){
+//!char var = 0;
+//!   i2c_start();
+//!   i2c_write(0x68);
+//!   if(bit=00){
+//!      i2c_write(addrh);
+//!      i2c_write(addrl);
+//!   
+//!   i2c_start();
+//!   i2c_write(0xA1);
+//!   
+//!   var = i2c_stop();
+//!   return var;
+//!}
+
+//!void RTC_Init(void){
+//!    I2C_Init();                             // Initialize the I2c module.
+//!    I2C_Start();                            // Start I2C communication
+//! 
+//!    I2C_Write(C_Ds1307WriteMode_U8);        // Connect to DS1307 by sending its ID on I2c Bus
+//!    I2C_Write(C_Ds1307ControlRegAddress_U8);// Select the Ds1307 ControlRegister to configure Ds1307
+//! 
+//!    I2C_Write(0x00);                        // Write 0x00 to Control register to disable SQW-Out
+//! 
+//!    I2C_Stop();                             // Stop I2C communication after initializing DS1307
+//!}
+
+

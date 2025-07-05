@@ -1,0 +1,196 @@
+004-005 @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2
+01B     CCP_2_LOW
+01C     CCP_2_HIGH
+020-022 apl1On
+023-025 apl1Off
+026-028 apl2On
+029-02B apl2Off
+02C-02E apl3On
+02F-031 apl3Off
+032     set_time.h
+032     @PSTRINGCN7_629.P1
+032     lcd_init.i
+032-033 compare_time_with_RTC.arr
+032     print_time.h
+032     MAIN.@SCRATCH1
+033-036 lcd_init.LCD_INIT_STRING
+033     print_time.m
+033     set_time.m
+033     @PSTRINGCN7_629.@SCRATCH1
+034     print_time.s
+034     compare_time_with_RTC.h
+034     set_time.s
+034     @PSTRINGCN7_629.@SCRATCH2
+035     set_minute.only
+035     compare_time_with_RTC.m
+035     set_hour.only
+035     set_second.only
+035     print_time.@SCRATCH1
+035     set_time.@SCRATCH1
+035     @PSTRINGCN7_629.@SCRATCH3
+036     set_second.ret
+036     set_minute.ret
+036     set_hour.ret
+036     compare_time_with_RTC.@SCRATCH1
+036     @PSTRINGCN7_629.@SCRATCH4
+037     hoursTo24.h
+037     set_minute.given
+037     set_hour.given
+037     set_second.given
+037     lcd_init.@SCRATCH1
+038     set_second.v
+038     set_hour.v
+038     set_minute.v
+038     hoursTo24.@SCRATCH1
+039     @PRINTF_U_629.P1
+039     RTC_read.addr
+039     lcd_ln.l
+039     set_second.@SCRATCH1
+039     @PSTRINGC7_629.@SCRATCH1
+039     set_minute.@SCRATCH1
+039     set_hour.@SCRATCH1
+039     hoursTo24.@SCRATCH2
+03A     RTC_read.var
+03A     @PRINTF_U_629.P1
+03A     hoursTo12.h
+03A     RTC_write.addr
+03A     @PSTRINGC7_629.@SCRATCH2
+03B     fromBCD.num
+03B     @I2C_READ_1.P1
+03B     RTC_write.data
+03B     @PSTRINGC7_629.@SCRATCH3
+03B     hoursTo12.@SCRATCH1
+03C     toBCD.num
+03C     lcd_putc.c
+03C     @I2C_WRITE_1.P1
+03C     @I2C_READ_1.@SCRATCH1
+03C     fromBCD.@SCRATCH1
+03C     @PSTRINGC7_629.@SCRATCH4
+03D     @delay_ms1.P1
+03D     lcd_gotoxy.x
+03D     @I2C_READ_1.@SCRATCH2
+03D     toBCD.@SCRATCH1
+03D     fromBCD.@SCRATCH2
+03E     lcd_gotoxy.y
+03E     @MUL88.P1
+03E     @DIV88.P2
+03F     @MUL88.P1
+03F     @DIV88.P2
+03F     lcd_gotoxy.address
+040     lcd_gotoxy.@SCRATCH1
+040     @DIV88.@SCRATCH1
+041     lcd_send_byte.address
+042     lcd_send_byte.n
+043     lcd_read_byte.low
+043     lcd_send_byte.@SCRATCH1
+044     lcd_send_nibble.n
+044     lcd_read_byte.high
+045     lcd_read_nibble.n
+045     lcd_read_byte.@SCRATCH1
+046     lcd_read_nibble.@SCRATCH1
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @const684.call
+00000A  @const687.call
+000010  @const697.call
+000016  @const699.call
+00001C  @const711.call
+000025  @const714.call
+00002E  @const717.call
+000035  @const720.call
+00003C  @const723.call
+000041  @const725.call
+000046  @const727.call
+00004B  @const729.call
+000050  @const731.call
+000055  @const733.call
+00005A  @const753.call
+00005E  @const755.call
+000062  @const763.call
+000067  @const765.call
+00006C  @const771.call
+000071  @const773.call
+000076  @const779.call
+00007B  @const781.call
+000080  @const787.call
+000085  @delay_ms1
+00009A  lcd_send_nibble
+0000B3  lcd_read_nibble
+0000D8  lcd_send_byte
+0000DE  lcd_read_byte
+00011B  @I2C_WRITE_1
+00014F  RTC_read
+00017A  @I2C_READ_1
+0001C2  RTC_write
+0001EC  @DIV88
+000201  toBCD
+000213  fromBCD
+00021F  @MUL88
+00024A  lcd_gotoxy
+00025C  lcd_putc
+000288  lcd_cls
+00028C  lcd_ln
+000292  @PSTRINGC7_629
+0002E8  @PRINTF_U_629
+00031D  sys_init
+00032A  lcd_init
+00036C  set_time
+000379  set_hour
+00039C  hoursTo12
+0005EB  set_minute
+00066C  set_second
+0006F4  print_time
+00077B  @PSTRINGCN7_629
+000800  compare_time_with_RTC
+00080B  hoursTo24
+00085D  @cinit1
+00085D  MAIN
+000867  @cinit2
+
+Project Directory:
+    C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Assignments\Project assignment\mon_tues\
+
+Project Files:
+    RTC with scheduling.c                                   [16-Jun-25 02:01  CRC=7FA5B97A]
+    RTC with scheduling.h                                   [16-Jun-25 23:20  CRC=EAA5B102]
+    ..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F876A.h [12-Nov-13 14:35  CRC=7FE1E080]
+    ..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [19-Sep-13 15:38  CRC=D1A6378A]
+
+Source signature=8D79BA10
+
+Units:
+    RTC with scheduling (main)
+
+Compiler Settings:
+    Processor:      PIC16F876A
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   RTC with scheduling.xsym
+    Errors:      RTC with scheduling.err
+    Ext Symbols: RTC with scheduling.esym
+    INHX8:       RTC with scheduling.hex
+    Symbols:     RTC with scheduling.sym
+    List:        RTC with scheduling.lst
+    Debug/COFF:  RTC with scheduling.cof
+    Project:     RTC with scheduling.ccspjt
+    Call Tree:   RTC with scheduling.tre
+    Statistics:  RTC with scheduling.STA

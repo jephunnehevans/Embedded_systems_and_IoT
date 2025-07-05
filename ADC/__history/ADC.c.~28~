@@ -1,0 +1,17 @@
+#include <ADC.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      lcd_clear();
+      measure_i = READ_ADC();
+      delay_ms(100);
+      
+      lcd_gotoxy(1,1);
+      printf(lcd_putc "Voltage = %u", measure_i*(5/255));
+      delay_ms(10);
+      lcd_gotoxy(1,2);
+      printf(lcd_putc "Convertion = %u", measure_i);
+      delay_ms(1000);
+   }
+}

@@ -1,0 +1,17 @@
+ÀÄDr (Mrs
+   ÃÄMAIN  0/57  Ram=0
+   ³  ÃÄ@cinit1  (Inline)  Ram=0
+   ³  ÀÄsys_init  0/22  Ram=0
+   ÀÄisrtimer0  0/163  Ram=9
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@MUL1616  0/21  Ram=5
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@DIV1616  0/37  Ram=5
+      ÃÄ@MUL1616  0/21  Ram=5
+      ÃÄdisplay  0/27  Ram=12
+      ÃÄdisplay  0/27  Ram=12
+      ÃÄdisplay  0/27  Ram=12
+      ÀÄdisplay  0/27  Ram=12

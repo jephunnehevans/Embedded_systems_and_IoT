@@ -1,0 +1,10 @@
+#include <lesson2.h>
+
+void main()
+{
+   while(){
+      output_b(y);
+      y++;
+      delay_ns(2000); 
+   }
+}

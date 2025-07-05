@@ -1,0 +1,308 @@
+CCS PCM C Compiler, Version 5.015, 5967               22-May-25 16:42
+
+               Filename:   C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\UART\UART.lst
+
+               ROM used:   232 words (3%)
+                           Largest free fragment is 2048
+               RAM used:   7 (2%) at main() level
+                           11 (3%) worst case
+               Stack used: 2 locations
+               Stack size: 8
+
+*
+0000:  MOVLW  00
+0001:  MOVWF  0A
+0002:  GOTO   0B8
+0003:  NOP
+.................... #include <UART.h> 
+.................... #include <16F876A.h> 
+.................... //////////// Standard Header file for the PIC16F876A device //////////////// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... ////        (C) Copyright 1996, 2013 Custom Computer Services          //// 
+.................... //// This source code may only be used by licensed users of the CCS C  //// 
+.................... //// compiler.  This source code may only be distributed to other      //// 
+.................... //// licensed users of the CCS C compiler.  No other use, reproduction //// 
+.................... //// or distribution is permitted without written permission.          //// 
+.................... //// Derivative programs created using this software in object code    //// 
+.................... //// form are not restricted in any way.                               //// 
+.................... /////////////////////////////////////////////////////////////////////////// 
+.................... #device PIC16F876A 
+0004:  DATA D7,32
+0005:  DATA EC,31
+0006:  DATA EF,36
+0007:  DATA 65,00
+0008:  DATA 57,39
+0009:  DATA 69,3A
+000A:  DATA 65,10
+000B:  DATA D3,37
+000C:  DATA ED,32
+000D:  DATA 20,3A
+000E:  DATA E8,34
+000F:  DATA EE,33
+0010:  DATA 00,00
+*
+0026:  MOVF   0B,W
+0027:  MOVWF  22
+0028:  BCF    0B.7
+0029:  BSF    03.5
+002A:  BSF    03.6
+002B:  BSF    0C.7
+002C:  BSF    0C.0
+002D:  NOP
+002E:  NOP
+002F:  BCF    03.5
+0030:  BCF    03.6
+0031:  BTFSC  22.7
+0032:  BSF    0B.7
+0033:  BSF    03.6
+0034:  MOVF   0C,W
+0035:  ANDLW  7F
+0036:  BTFSC  03.2
+0037:  GOTO   07C
+0038:  BCF    03.6
+0039:  MOVWF  22
+003A:  BSF    03.6
+003B:  MOVF   0D,W
+003C:  BCF    03.6
+003D:  MOVWF  23
+003E:  BSF    03.6
+003F:  MOVF   0F,W
+0040:  BCF    03.6
+0041:  MOVWF  24
+0042:  MOVF   22,W
+0043:  BTFSS  0C.4
+0044:  GOTO   043
+0045:  MOVWF  19
+0046:  MOVF   23,W
+0047:  BSF    03.6
+0048:  MOVWF  0D
+0049:  BCF    03.6
+004A:  MOVF   24,W
+004B:  BSF    03.6
+004C:  MOVWF  0F
+004D:  BCF    03.6
+004E:  MOVF   0B,W
+004F:  MOVWF  25
+0050:  BCF    0B.7
+0051:  BSF    03.5
+0052:  BSF    03.6
+0053:  BSF    0C.7
+0054:  BSF    0C.0
+0055:  NOP
+0056:  NOP
+0057:  BCF    03.5
+0058:  BCF    03.6
+0059:  BTFSC  25.7
+005A:  BSF    0B.7
+005B:  BSF    03.6
+005C:  RLF    0C,W
+005D:  RLF    0E,W
+005E:  ANDLW  7F
+005F:  BTFSC  03.2
+0060:  GOTO   07C
+0061:  BCF    03.6
+0062:  MOVWF  22
+0063:  BSF    03.6
+0064:  MOVF   0D,W
+0065:  BCF    03.6
+0066:  MOVWF  23
+0067:  BSF    03.6
+0068:  MOVF   0F,W
+0069:  BCF    03.6
+006A:  MOVWF  24
+006B:  MOVF   22,W
+006C:  BTFSS  0C.4
+006D:  GOTO   06C
+006E:  MOVWF  19
+006F:  MOVF   23,W
+0070:  BSF    03.6
+0071:  MOVWF  0D
+0072:  BCF    03.6
+0073:  MOVF   24,W
+0074:  BSF    03.6
+0075:  MOVWF  0F
+0076:  INCF   0D,F
+0077:  BTFSC  03.2
+0078:  INCF   0F,F
+0079:  BCF    03.6
+007A:  GOTO   026
+007B:  BSF    03.6
+007C:  BCF    03.6
+007D:  RETURN
+....................  
+.................... #list 
+....................  
+.................... #use fast_io(a) 
+.................... #use fast_io(b) 
+.................... #use fast_io(c) 
+.................... #FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG,PROTECT 
+.................... #use delay(crystal=4000000) 
+*
+0011:  MOVLW  23
+0012:  MOVWF  04
+0013:  BCF    03.7
+0014:  MOVF   00,W
+0015:  BTFSC  03.2
+0016:  GOTO   025
+0017:  MOVLW  01
+0018:  MOVWF  78
+0019:  CLRF   77
+001A:  DECFSZ 77,F
+001B:  GOTO   01A
+001C:  DECFSZ 78,F
+001D:  GOTO   019
+001E:  MOVLW  4A
+001F:  MOVWF  77
+0020:  DECFSZ 77,F
+0021:  GOTO   020
+0022:  GOTO   023
+0023:  DECFSZ 00,F
+0024:  GOTO   017
+0025:  RETURN
+.................... #use rs232(UART1) 
+.................... //!#use rs232(baud=9600,parity=N,xmit=pin_b0,rcv=pin_b1,stream=lcd) 
+....................  
+.................... unsigned int8 x=0; 
+.................... char letterInput=""; 
+....................  
+.................... void sys_init(){ 
+....................    output_b(0); output_c(0); 
+*
+007E:  CLRF   06
+007F:  CLRF   07
+....................    set_tris_b(0b11111111); 
+0080:  MOVLW  FF
+0081:  BSF    03.5
+0082:  MOVWF  06
+....................    set_tris_c(0b10000000); 
+0083:  MOVLW  80
+0084:  MOVWF  07
+....................    output_b(0); output_c(0); 
+0085:  BCF    03.5
+0086:  CLRF   06
+0087:  CLRF   07
+....................     
+.................... //!   output_high 
+....................     
+....................    setup_uart(9600); 
+0088:  MOVLW  19
+0089:  BSF    03.5
+008A:  MOVWF  19
+008B:  MOVLW  A6
+008C:  MOVWF  18
+008D:  MOVLW  90
+008E:  BCF    03.5
+008F:  MOVWF  18
+....................    delay_ms(1000); 
+0090:  MOVLW  04
+0091:  MOVWF  22
+0092:  MOVLW  FA
+0093:  MOVWF  23
+0094:  CALL   011
+0095:  DECFSZ 22,F
+0096:  GOTO   092
+....................     
+....................     
+....................     
+....................    putc(254); putc(1); 
+0097:  MOVLW  FE
+0098:  BTFSS  0C.4
+0099:  GOTO   098
+009A:  MOVWF  19
+009B:  MOVLW  01
+009C:  BTFSS  0C.4
+009D:  GOTO   09C
+009E:  MOVWF  19
+....................    putc(254); putc(00); 
+009F:  MOVLW  FE
+00A0:  BTFSS  0C.4
+00A1:  GOTO   0A0
+00A2:  MOVWF  19
+00A3:  MOVLW  00
+00A4:  BTFSS  0C.4
+00A5:  GOTO   0A4
+00A6:  MOVWF  19
+....................    printf("Welcome"); 
+00A7:  MOVLW  04
+00A8:  BSF    03.6
+00A9:  MOVWF  0D
+00AA:  MOVLW  00
+00AB:  MOVWF  0F
+00AC:  BCF    03.6
+00AD:  CALL   026
+....................    delay_ms(1000); 
+00AE:  MOVLW  04
+00AF:  MOVWF  22
+00B0:  MOVLW  FA
+00B1:  MOVWF  23
+00B2:  CALL   011
+00B3:  DECFSZ 22,F
+00B4:  GOTO   0B0
+00B5:  BCF    0A.3
+00B6:  BCF    0A.4
+00B7:  GOTO   0CF (RETURN)
+.................... } 
+....................  
+....................  
+.................... void main(){ 
+00B8:  MOVF   03,W
+00B9:  ANDLW  1F
+00BA:  MOVWF  03
+00BB:  MOVLW  19
+00BC:  BSF    03.5
+00BD:  MOVWF  19
+00BE:  MOVLW  A6
+00BF:  MOVWF  18
+00C0:  MOVLW  90
+00C1:  BCF    03.5
+00C2:  MOVWF  18
+00C3:  CLRF   20
+00C4:  CLRF   21
+00C5:  BSF    03.5
+00C6:  BSF    1F.0
+00C7:  BSF    1F.1
+00C8:  BSF    1F.2
+00C9:  BCF    1F.3
+00CA:  MOVLW  07
+00CB:  MOVWF  1C
+00CC:  BCF    03.7
+....................    sys_init(); 
+00CD:  BCF    03.5
+00CE:  GOTO   07E
+....................    putc(254); putc(1); 
+00CF:  MOVLW  FE
+00D0:  BTFSS  0C.4
+00D1:  GOTO   0D0
+00D2:  MOVWF  19
+00D3:  MOVLW  01
+00D4:  BTFSS  0C.4
+00D5:  GOTO   0D4
+00D6:  MOVWF  19
+....................    putc(254); putc(00); 
+00D7:  MOVLW  FE
+00D8:  BTFSS  0C.4
+00D9:  GOTO   0D8
+00DA:  MOVWF  19
+00DB:  MOVLW  00
+00DC:  BTFSS  0C.4
+00DD:  GOTO   0DC
+00DE:  MOVWF  19
+....................    printf("Write Some thing"); 
+00DF:  MOVLW  08
+00E0:  BSF    03.6
+00E1:  MOVWF  0D
+00E2:  MOVLW  00
+00E3:  MOVWF  0F
+00E4:  BCF    03.6
+00E5:  CALL   026
+....................    while(TRUE){ 
+00E6:  GOTO   0E6
+.................... //!      putc(254); putc(192); 
+.................... //!      letterInput = getc(lcd); 
+.................... //!      sprintf(letterInput); 
+....................    } 
+.................... } 
+00E7:  SLEEP
+
+Configuration Fuses:
+   Word  1: 1E31   XT NOWDT PUT NOBROWNOUT NOLVP CPD NOWRT NODEBUG PROTECT

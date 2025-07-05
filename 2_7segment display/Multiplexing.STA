@@ -1,0 +1,50 @@
+
+ROM used:   193/1024 (19%)
+            193/1024 (19%) including unused fragments
+
+            0.4 Average locations per line
+            4.6 Average locations per statement
+
+RAM used:   14/68 (21%) at main() level
+            27/68 (40%) worst case
+
+Stack used: 3 worst case (1 in main + 2 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   18    17  40  Multiplexing.c
+   51    25  60  Multiplexing.h
+  404     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h
+----- -----
+  473    42 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     27  14   12   174  3.5  display
+0     38  20    1   295  4.2  isrtimer0
+0     21  11    3   295  5.0  @DIV88
+0     22  11    0   245  1.8  sys_init
+0     31  16    0   313  5.0  MAIN
+ Inline         0   852  6.2  @cinit1
+
+Program metrics:
+    Functions               6
+    Statements              42
+    Comments                69
+    Volume (V)              3150
+    Difficulty (D)          26.1
+    Effort to implement (E) 82277
+    Time to implement (T)   1 hours, 16 minutes
+    Est Delivered Bugs (B)  1
+    Cyclomatic Complexity   11
+    Maintainability (MI)    64
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-00035    50  0  
+00036-003FF   139  831  
+
+
+

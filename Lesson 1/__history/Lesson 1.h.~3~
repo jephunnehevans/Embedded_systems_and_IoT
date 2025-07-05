@@ -1,0 +1,19 @@
+#include <16F84A.h>
+
+#FUSES XT,NOWDT,PUT,PROTECT          //No Watch Dog Timer
+
+#use delay(crystal=4000000)
+
+
+
+unsigned int8 y=0;
+
+void sys_init()
+{
+   output_a(0);
+   output_b(0);
+   set_tris_a(0b00011111);
+   set_tris_b(0);
+   output_a(0);
+   output_b(0);
+}

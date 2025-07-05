@@ -1,0 +1,48 @@
+#include <16F876A.h>
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG,PROTECT
+#use delay(crystal=4000000)
+
+#define LCD_DATA_PORT getenv("SFR:PORTB")
+#define LCD_ENABLE_PIN  PIN_B3
+#define LCD_RS_PIN      PIN_B1
+#define LCD_RW_PIN      PIN_B2
+#define LCD_DATA4       PIN_B4
+#define LCD_DATA5       PIN_B5
+#define LCD_DATA6       PIN_B6
+#define LCD_DATA7       PIN_B7
+#include <lcd.c>
+
+float dist = 0;
+
+void sys_init(){
+   output_a(0); output_b(0); output_c(0);
+   set_tris_a(0b111110); set_tris_b(0b10000000); set_tris_c(0);
+   output_a(0); output_b(0); output_c(0);
+   
+   setup_timer_0(T0_INTERNAL | T0_DIV_256 | T0_8_BIT);
+   set_timer0(0);
+   
+   lcd_init(); lcd_putc('\f'); lcd_gotoxy(1,1);
+   lcd_putc("  Ultrasonic");
+   lcd_gotoxy(1,2);
+   lcd_putc("     Meter");
+   delay_ms(1000);
+}
+
+void Trig(){
+   output_high(pin_a1);
+   delay_us(10);
+   output_low(pin_a1);
+}
+
+float Distance_meter(){
+float val = 0;
+   // while(!input(pin_a0));
+   set_Timer0(0);
+   while(input(pin_a0));
+   val = get_timer0();
+   return (((0.034 * val)/2) * 256);
+}

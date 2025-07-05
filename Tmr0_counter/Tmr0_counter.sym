@@ -1,0 +1,90 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+009-00A @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+010     counter
+011     lcd_init.i
+011     lcd_line.x
+011     sys_init.@SCRATCH1
+011     MAIN.@SCRATCH1
+012-015 lcd_init.LCD_INIT_STRING
+012     @PRINTF_U_525.P1
+012     MAIN.@SCRATCH2
+013     @PRINTF_U_525.P1
+014     @DIV88.P1
+014     lcd_putc.c
+015     lcd_gotoxy.x
+015     @DIV88.P1
+016     @delay_ms1.P1
+016     lcd_gotoxy.y
+016     lcd_init.@SCRATCH1
+016     @DIV88.@SCRATCH1
+017     lcd_gotoxy.address
+018     lcd_gotoxy.@SCRATCH1
+019     lcd_send_byte.address
+01A     lcd_send_byte.n
+01B     lcd_read_byte.low
+01B     lcd_send_byte.@SCRATCH1
+01C     lcd_read_byte.high
+01C     lcd_send_nibble.n
+01D     lcd_read_nibble.n
+01D     lcd_read_byte.@SCRATCH1
+01E     lcd_read_nibble.@SCRATCH1
+
+ROM Allocation:
+000004  @const542.call
+000019  @const543.call
+00002E  @const547.call
+000043  @const548.call
+000054  @delay_ms1
+000068  lcd_send_nibble
+000081  lcd_read_nibble
+0000A6  lcd_send_byte
+0000AC  lcd_read_byte
+0000E9  lcd_gotoxy
+0000FB  lcd_putc
+000127  lcd_clear
+00012B  lcd_line
+000131  sys_init
+00014F  lcd_init
+0001AF  @DIV88
+0001C4  @PRINTF_U_525
+0001F9  MAIN
+0001F9  @cinit1
+0001FD  @cinit2
+
+Project Directory:
+    C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Tmr0_counter\
+
+Project Files:
+    Tmr0_counter.c                                          [02-Jun-25 15:16  CRC=7DFCA5F0]
+    Tmr0_counter.h                                          [02-Jun-25 15:16  CRC=68D7411B]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h [12-Nov-13 14:34  CRC=4E09ACDB]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [19-Sep-13 15:38  CRC=D1A6378A]
+
+Source signature=D82A02FA
+
+Units:
+    Tmr0_counter (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   Tmr0_counter.xsym
+    Errors:      Tmr0_counter.err
+    Ext Symbols: Tmr0_counter.esym
+    INHX8:       Tmr0_counter.hex
+    Symbols:     Tmr0_counter.sym
+    List:        Tmr0_counter.lst
+    Debug/COFF:  Tmr0_counter.cof
+    Project:     Tmr0_counter.ccspjt
+    Call Tree:   Tmr0_counter.tre
+    Statistics:  Tmr0_counter.STA

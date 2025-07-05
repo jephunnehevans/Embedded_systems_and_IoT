@@ -1,0 +1,4 @@
+>>> Warning 202 "Lesson 1.c" Line 3(15,16): Variable never used:   y
+      Memory usage:   ROM=7%      RAM=9% - 10%
+      0 Errors,  1 Warnings.
+Build Successful.

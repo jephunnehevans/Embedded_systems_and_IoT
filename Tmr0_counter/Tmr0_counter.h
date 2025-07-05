@@ -1,0 +1,44 @@
+#include <16F84A.h>
+#use fast_io(a)
+#use fast_io(b)
+#FUSES XT,NOWDT,PUT,PROTECT
+#use delay(crystal=4000000)
+
+#define LCD_DATA_PORT getenv("SFR:PORTB")
+#define LCD_ENABLE_PIN  PIN_B3
+#define LCD_RS_PIN      PIN_B1
+#define LCD_RW_PIN      PIN_B2
+#define LCD_DATA4       PIN_B4
+#define LCD_DATA5       PIN_B5
+#define LCD_DATA6       PIN_B6
+#define LCD_DATA7       PIN_B7
+#include "lcd.c"
+
+unsigned int8 counter = 0;
+
+void lcd_clear(){
+   lcd_putc('\f');
+}
+
+void lcd_line(unsigned int8 x){
+   lcd_gotoxy(1,x);
+}
+
+void sys_init(){
+   output_a(0); output_b(0);
+   set_tris_a(0b11111); set_tris_b(0);
+   output_a(0); output_b(0);
+   
+   SETUP_COUNTERS(T0_EXT_L_TO_H, T0_DIV_1);
+   SET_RTCC(0);
+   
+   CLEAR_INTERRUPT(INT_RTCC);
+   ENABLE_INTERRUPTS(INT_RTCC);
+   ENABLE_INTERRUPTS(GLOBAL);
+   
+   lcd_init(); lcd_clear(); lcd_line(1);
+   printf(lcd_putc "     Botting    ",);
+   lcd_line(2);
+   printf(lcd_putc "     counter    ",);
+   delay_ms(1000);
+}

@@ -1,0 +1,17 @@
+#include <16F876A.h>
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG
+#use delay(crystal=4000000)
+
+#include "lcd.c"
+
+void sys_init(){
+   output_a(0); output_b(0); output_c(0);
+   set_tris_a(0); set_tris_b(0b00001111); set_tris_c(0);
+   output_a(0); output_b(0); output_c(0);
+   
+   
+}
+

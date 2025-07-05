@@ -1,0 +1,27 @@
+#include <Dig_therm.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      showTemp(READ_ADC());
+      if(READ_ADC()>41){
+         while(READ_ADC()>41);
+         output_high(pin_b1);
+         output_low(pin_b2);
+         state = "Cooler";
+      }
+      else if(READ_ADC()<40){
+         while(READ_ADC()<40);
+         output_high(pin_b2);
+         output_low(pin_b1);
+         state = "Heater";
+      }
+      else{
+         output_low(pin_b1);
+         output_low(pin_b2);
+         state = "Normal";
+      }
+      lcd_gotoxy(1,2);
+      printf(lcd_putc "State %c", state);
+   }
+}

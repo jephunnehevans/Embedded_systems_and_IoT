@@ -1,0 +1,26 @@
+[PROJECT]
+Target=Tmr0_counter.hex
+Processor_Text=PIC16F84A
+CCSVerions=5.015
+Compiler=PCM
+CCSVersion=5.015
+[Target Data]
+FileList=Tmr0_counter.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Tmr0_counter\Tmr0_counter]
+Type=4
+[mru-list]
+1=Tmr0_counter.c
+[Opened Files]
+1=Tmr0_counter.c
+2=Tmr0_counter.h
+3=16F84A.h
+4=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+5=..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h
+6=
+[Tmr0_counter.c]
+Type=4
+[Units]
+Count=1
+1=Tmr0_counter (main)

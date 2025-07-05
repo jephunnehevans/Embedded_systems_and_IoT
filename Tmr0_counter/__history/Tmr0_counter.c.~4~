@@ -1,0 +1,8 @@
+#include <Tmr0_counter.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      
+   }
+}

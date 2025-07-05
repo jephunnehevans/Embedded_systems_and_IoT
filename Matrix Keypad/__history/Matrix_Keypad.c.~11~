@@ -1,0 +1,24 @@
+#include <Matrix_Keypad.h>
+
+void main(){
+   sys_init();
+   lcd_putc('\f');
+   lcd_gotoxy(1, 1);
+   while(TRUE){
+      output_b(255);
+      output_low(pin_b4);
+      if(!pin_b0){
+         while(!pin_b0); lcd_putc('1');
+      }
+      if(!pin_b1){
+         while(!pin_b1); lcd_putc('4');
+      }
+      if(!pin_b2){
+         while(!pin_b2); lcd_putc('7');
+      }
+      if(!pin_b3){
+         while(!pin_b3); lcd_putc('*');
+      }
+      delay_ms(500);
+   }
+}

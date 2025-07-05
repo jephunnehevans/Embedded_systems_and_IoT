@@ -1,0 +1,59 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+009-00A @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+011     trafficLight.rt
+011     sys_init.@SCRATCH1
+012     trafficLight.yt
+013     trafficLight.gt
+014-015 @MUL1616.P1
+014     trafficLight.@SCRATCH1
+015     trafficLight.@SCRATCH2
+016-017 @MUL1616.P1
+016     trafficLight.@SCRATCH3
+017     @delay_ms1.P1
+018     @MUL1616.@SCRATCH1
+
+ROM Allocation:
+000004  @delay_ms1
+000018  sys_init
+000037  @MUL1616
+00004C  trafficLight
+0000F1  MAIN
+0000F1  @cinit1
+0000F4  @cinit2
+
+Project Directory:
+    C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Trafic Light\
+
+Project Files:
+    Trafic_Light.c                                          [20-May-25 12:30  CRC=00000000]
+    Trafic_Light.h                                          [20-May-25 12:30  CRC=492FAB81]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h [12-Nov-13 14:34  CRC=4E09ACDB]
+
+Source signature=E5430537
+
+Units:
+    Trafic_Light (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   Trafic_Light.xsym
+    Errors:      Trafic_Light.err
+    Ext Symbols: Trafic_Light.esym
+    INHX8:       Trafic_Light.hex
+    Symbols:     Trafic_Light.sym
+    List:        Trafic_Light.lst
+    Debug/COFF:  Trafic_Light.cof
+    Project:     Trafic_Light.ccspjt
+    Call Tree:   Trafic_Light.tre
+    Statistics:  Trafic_Light.STA

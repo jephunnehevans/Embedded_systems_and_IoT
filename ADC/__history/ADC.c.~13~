@@ -1,0 +1,12 @@
+#include <ADC.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      lcd_clear();
+      measure_i = READ_ADC();
+      delay_ms(100);
+      
+      lcd_gotoxy(1,1);
+   }
+}

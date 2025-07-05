@@ -1,0 +1,8 @@
+#include <RTC with scheduling.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      
+   }
+}

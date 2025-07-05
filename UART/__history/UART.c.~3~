@@ -1,0 +1,10 @@
+#include <UART.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      putc(254); putc(00);
+      letterInput = getc();
+      putc(letterInput);
+   }
+}

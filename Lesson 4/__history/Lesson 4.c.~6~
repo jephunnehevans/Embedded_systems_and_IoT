@@ -1,0 +1,13 @@
+#include <Lesson 4.h>
+
+void main()
+{
+   count=255;
+   while(TRUE)
+   {
+//!      method1();
+//!      method2();
+      method3();
+   }
+
+}

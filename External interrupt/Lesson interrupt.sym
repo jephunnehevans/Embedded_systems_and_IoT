@@ -1,0 +1,55 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+009-00A @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+
+ROM Allocation:
+00003A  isrext
+00003F  isrrb
+000052  sys_init
+000067  MAIN
+000067  @cinit1
+00006A  @cinit2
+
+Project Directory:
+    C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\New folder\
+
+Project Files:
+    Lesson interrupt.c                                      [13-May-25 16:35  CRC=00000000]
+    Lesson interrupt.h                                      [13-May-25 17:19  CRC=155D4FC7]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h [12-Nov-13 14:34  CRC=4E09ACDB]
+
+Source signature=B170A97D
+
+Units:
+    Lesson interrupt (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   Lesson interrupt.xsym
+    Errors:      Lesson interrupt.err
+    Ext Symbols: Lesson interrupt.esym
+    INHX8:       Lesson interrupt.hex
+    Symbols:     Lesson interrupt.sym
+    List:        Lesson interrupt.lst
+    Debug/COFF:  Lesson interrupt.cof
+    Project:     Lesson interrupt.ccspjt
+    Call Tree:   Lesson interrupt.tre
+    Statistics:  Lesson interrupt.STA

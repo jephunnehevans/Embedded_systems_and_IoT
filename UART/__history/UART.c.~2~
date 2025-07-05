@@ -1,0 +1,9 @@
+#include <UART.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      //TODO: User Code
+   }
+
+}

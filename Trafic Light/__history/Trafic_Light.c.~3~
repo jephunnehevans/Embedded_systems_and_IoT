@@ -1,0 +1,7 @@
+#include <Trafic_Light.h>
+
+void main(){
+   while(TRUE){
+      
+   }
+}

@@ -1,0 +1,20 @@
+#include <16F84A.h>
+#use fast_io(a)
+#use fast_io(b)
+#FUSES XT,NOWDT,PUT,PROTECT
+#use delay(crystal=4000000)
+
+#include "lcd.c"
+
+void sys_init(){
+   output_a(0); output_b(0);
+   set_tris_a(0b110000); set_tris_b(0);
+   output_a(0); output_b(0);
+   
+   SETUP_COUNTERS(T0_EXT_L_TO_H | T0_DIV_64);
+   SET__RTCC(0);
+   
+   CLEAR_INTERRUPT(INT_RTCC);
+   ENABLE_INTERRUPTS(INT_RTCC);
+   ENABLE_INTERRUPTS(GLOBAL);
+}

@@ -1,0 +1,13 @@
+Pic16f876a -> 7,000
+Pic18f2620 - 2x -> 8000
+Lcd 16x2 (blue screen) -> 2800
+Lcd 20x4 - 2x (blue screen) -> 7000
+12pin Bus wires - 4× -> 600
+12v/15A relay - 10× -> 500
+Tip41c - 10×  -> 300
+Boat Switch - 10× -> 200
+
+1k resistors - 10× -> 20
+7805 - 10x -> 300
+1000uf/25v - 10× -> 200
+100nf Capacitor - 10× -> 50

@@ -1,0 +1,9 @@
+#include <DS1307.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      lcd_cls();
+      RTC_Init();
+   }
+}

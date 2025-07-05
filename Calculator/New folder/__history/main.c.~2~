@@ -1,0 +1,15 @@
+#include <main.h>
+
+void main(){
+   sys_init();
+   while(TRUE) {
+      lcd_putc('\f');
+      for(x=0;x<3;x++){
+         y[x] = scan(!(x%2));
+         lcd_gotoxy(1,1);
+         printf(lcd_putc "%s", y);
+      }
+      lcd_gotoxy(1,2);
+      printf(lcd_putc "= %f", calc(atoi(y[0]), atoi(y[2]), y[1]));
+   }
+}

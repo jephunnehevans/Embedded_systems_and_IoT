@@ -1,0 +1,13 @@
+#include <RTC with scheduling.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "%u to %u", c,  toBCD(c));
+      lcd_ln(2);
+      printf(lcd_putc "%u to %u", fromBCD(c), c);
+      delay_ms(5000);
+      c = c + 2
+   }
+}

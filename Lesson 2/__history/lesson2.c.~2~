@@ -1,0 +1,9 @@
+#include <lesson2.h>
+
+void main()
+{
+   y = 10;
+   output_b(++y);
+   
+   
+}

@@ -1,0 +1,8 @@
+#include <Dig_therm.h>
+
+void main(){
+   
+   while(TRUE){
+      
+   }
+}

@@ -1,0 +1,150 @@
+#include <16F876A.h>
+#device ADC=8
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,DEBUG,PROTECT
+#use delay(crystal=4000000)
+
+#define LCD_DATA_PORT getenv("SFR:PORTB")
+#define LCD_ENABLE_PIN  PIN_B3
+#define LCD_RS_PIN      PIN_B1
+#define LCD_RW_PIN      PIN_B2
+#define LCD_DATA4       PIN_B4
+#define LCD_DATA5       PIN_B5
+#define LCD_DATA6       PIN_B6
+#define LCD_DATA7       PIN_B7
+#include "lcd.c"
+
+unsigned int8 speed = 0, Tmin = 30, Tmax = 50;
+unsigned int16 Pr2 = 499, Pt = 0;
+float Temp = 0;
+
+void lcd_cls(){
+   lcd_putc('\f');
+}
+
+void lcd_ln(unsigned int8 r, c = 1){
+//!   if((l>0) && (l<=4))
+   lcd_gotoxy(c,r);
+}
+
+void sys_init(){
+   output_a(0); output_b(0); output_b(0);
+   set_tris_a(0b111111); set_tris_b(0); set_tris_c(0);
+   output_a(0); output_b(0); output_b(0);
+   
+   SETUP_ADC(ADC_CLOCK_INTERNAL);
+   SETUP_ADC_PORTS(AN0_AN1_VSS_VREF);
+   SET_ADC_CHANNEL(0);
+   
+   SETUP_CCP1(CCP_PWM);
+   SETUP_TIMER_2(T2_DIV_BY_4, Pr2, 1);
+   SET_PWM1_DUTY(Pt);
+   
+   lcd_init();
+   lcd_cls();
+   lcd_ln(1);
+   lcd_putc("Temperature Based");
+   lcd_ln(2);
+   lcd_putc("Fan speed Control");
+   delay_ms(500);
+}
+
+void displayValues(){
+   lcd_cls();
+   lcd_ln(1);
+   printf(lcd_putc "Pr2 = %Lu, Temp = %f", Pr2, Temp);
+   lcd_ln(2);
+   printf(lcd_putc "On_Tm = %Lu, Speed = %u", Pt, speed);
+   delay_ms(100);
+}
+
+void speedFunction(){
+unsigned int8 t=0;
+   t = (Tmax - Tmin) / 4;
+   if(Temp<Tmin){// Level 0 (0%)
+      speed = 0; Pt = 0;
+   } else if(Temp<(Tmin+t)){// Level 1 (20%)
+      speed = 1; Pt = Pr2 / 5;
+   } else if(Temp<(Tmin+(2*t))){// Level 2 (40%)
+      speed = 2; Pt = (2 * Pr2) / 5;
+   } else if(Temp<(Tmin+(3*t))){// Level 3 (60%)
+      speed = 3; Pt = (3 * Pr2) / 5;
+   } else if(Temp<Tmax){// Level 4 (80%)
+      speed = 4; Pt = (4 * Pr2) / 5;
+   } else{// Level 5 (100%)
+      speed = 5; Pt = Pr2;
+   }
+}
+
+void set_temp(){
+unsigned int8 x = 0;
+   while(input(pin_a4))
+   while(!(input(pin_a4))){
+      lcd_cls();
+      if((input(pin_a2))){
+         while((input(pin_a2)));
+         x = 0;
+      } else if((input(pin_a5))){
+         while((input(pin_a5)));
+         x = 1;
+      } if(x){
+         lcd_ln(1);
+         lcd_putc("Set Maximum Temperature");
+         lcd_ln(2);
+         lcd_putc(">> Set Minimum Temperature");
+      } else{
+         lcd_ln(1);
+         lcd_putc(">> Set Maximum Temperature");
+         lcd_ln(2);
+         lcd_putc("Set Minimum Temperature");
+      }
+      delay_ms(100);
+   } while((input(pin_a4)));
+   if(x){
+      x = Tmin;
+      while(!(input(pin_a4))){
+         lcd_cls();
+         if(x || (input(pin_a2))){
+            while((input(pin_a2)));
+            x++;
+         }
+         else if((input(pin_a5))){
+            while((input(pin_a5)));
+            x--;
+         }
+         lcd_ln(1);
+         lcd_putc("Set Minimum Temperature");
+         lcd_ln(2);
+         printf(lcd_putc ">> %u", x);
+         delay_ms(100);
+      } while((input(pin_a4)));
+      Tmin = x;
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Minimum temperature has been set to %u", Tmin);
+      delay_ms(1000);
+   } else{
+      x = Tmax;
+      while(!(input(pin_a4))){
+         lcd_cls();
+         if(x || (input(pin_a2))){
+            while((input(pin_a2)));
+            x++;
+         }
+         else if((input(pin_a5))){
+            while((input(pin_a5)));
+            x--;
+         }
+         lcd_ln(1);
+         lcd_putc("Set Maximum Temperature");
+         lcd_ln(2);
+         printf(lcd_putc ">> %u", x);
+         delay_ms(100);
+      } while((input(pin_a4)));
+      Tmax = x;
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Maximum temperature has been set to %u", Tmax);
+      delay_ms(1000);
+   }
+}

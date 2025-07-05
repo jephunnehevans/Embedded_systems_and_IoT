@@ -1,0 +1,64 @@
+#include <passcode_safe.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      lcd_ln(2);
+      printf(lcd_putc "Lock mode");
+      delay_ms(250);
+      lcd_ln(2);
+      printf(lcd_putc "Lock mode .");
+      delay_ms(250);
+      lcd_ln(2);
+      printf(lcd_putc "Lock mode ..");
+      delay_ms(250);
+      lcd_ln(2);
+      printf(lcd_putc "Lock mode ...");
+      delay_ms(250);
+      while(f){
+         lcd_cls(); lcd_ln(1);
+         delay_ms(500);
+         printf(lcd_putc "Enter Passcode");
+         for(t=0;t<4;t++){
+           code[t] = type();
+           lcd_ln(2,(16-t));
+           printf(lcd_putc "%s", code);
+         }
+         for(t=0;t<5;t++){
+            if(code[t] != correct_code[t]){\
+               f = 1;
+               break;
+            }
+            else f = 0;
+         }
+         delay_ms(150);
+         lcd_ln(2);
+         if(f) printf(lcd_putc "Wrong code:");
+         else  printf(lcd_putc "Right code:");
+         delay_ms(1500);
+      }
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Safe is opening")
+      lcd_ln(2);
+      printf(lcd_putc "Unlocking");
+      delay_ms(250);
+      lcd_ln(2);
+      printf(lcd_putc "Unlocking .");
+      delay_ms(250);
+      lcd_ln(2);
+      printf(lcd_putc "Unlocking ..");
+      delay_ms(250);
+      lcd_ln(2);
+      printf(lcd_putc "Unlocking ...");
+      delay_ms(250);
+      
+      output_high(pin_a2);
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Locking Safe in")
+      for(t=0){
+         lcd_ln(2);
+         printf(lcd_putc "%u seconds", (10-t));
+         delay_ms(1000);
+      }
+   }
+}

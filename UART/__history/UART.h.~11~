@@ -1,0 +1,28 @@
+#include <16F876A.h>
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG,PROTECT
+#use delay(crystal=4000000)
+#use rs232(UART1)
+#use rs232(baud=9600,parity=N,vmit=pin_a0,vcu=pin_a1,stream=lcd)
+
+unsigned int8 x=0;
+char letterInput="";
+
+void sys_init(){
+   output_b(0);
+   output_c(0);
+   set_tris_b(0b11111111);
+   set_tris_c(0b10000000);
+   output_b(0);
+   output_c(0);
+   
+   setup_uart(9600);
+   delay_ms(1000);
+   
+   putc(254); putc(1);
+   putc(254); putc(00);
+   printf("Welcome");
+   delay_ms(1000);
+}

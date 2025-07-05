@@ -1,0 +1,53 @@
+
+ROM used:   232/8192 (3%)
+            232/8192 (3%) including unused fragments
+
+            0.3 Average locations per line
+            10.5 Average locations per statement
+
+RAM used:   7/368 (2%) at main() level
+            11/368 (3%) worst case
+
+Stack used: 2 worst case (2 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   14     8  36  UART.c
+   31    14  64  UART.h
+  620     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F876A.h
+----- -----
+  665    22 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     21   9    1             @delay_ms1
+0     58  25    1   295  1.4  sys_init
+0      4   2    0   221  2.2  @const608
+0     88  38    4   228  2.2  @PSTRINGC7_9600_62_63
+0     48  21    0   123  1.6  MAIN
+0      9   4    0   295  1.4  @const613
+ Inline         4   228  2.2  @cinit1
+
+Program metrics:
+    Functions               6
+    Statements              22
+    Comments                118
+    Volume (V)              2121
+    Difficulty (D)          10.9
+    Effort to implement (E) 23134
+    Time to implement (T)   21 minutes
+    Est Delivered Bugs (B)  0
+    Cyclomatic Complexity   1
+    Maintainability (MI)    147
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF   228  1816  
+00800-00FFF     0  2048  
+01000-017FF     0  2048  
+01800-01FFF     0  2048  
+
+
+

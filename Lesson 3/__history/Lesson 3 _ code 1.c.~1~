@@ -1,0 +1,11 @@
+#include <Lesson 3 _ code 1.h>
+
+void main()
+{
+
+	while(TRUE)
+	{
+		//TODO: User Code
+	}
+
+}

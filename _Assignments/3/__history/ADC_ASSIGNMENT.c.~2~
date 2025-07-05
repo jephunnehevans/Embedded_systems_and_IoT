@@ -1,0 +1,9 @@
+#include <ADC_ASSIGNMENT.h>
+
+void main(){
+   
+   while(TRUE){
+      //TODO: User Code
+   }
+
+}

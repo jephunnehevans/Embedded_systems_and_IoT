@@ -1,0 +1,63 @@
+
+ROM used:   555/1024 (54%)
+            555/1024 (54%) including unused fragments
+
+            0.6 Average locations per line
+            4.3 Average locations per statement
+
+RAM used:   7/68 (10%) at main() level
+            19/68 (28%) worst case
+
+Stack used: 6 worst case (6 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+   14    10   8  Tmr0_counter.c
+   45    20  15  Tmr0_counter.h
+  404     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h
+  456   100  77  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+----- -----
+  919   130 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+0     20   4    1             @delay_ms1
+ Inline         3   760  4.5  lcd_read_byte
+0     37   7    2   262  3.7  lcd_read_nibble
+0     25   5    1   399  2.4  lcd_send_nibble
+0     67  12    3   415  3.7  lcd_send_byte
+ Inline         6   852  6.2  lcd_init
+0     18   3    4   208  6.3  lcd_gotoxy
+0     44   8    1   354  4.7  lcd_putc
+0      4   1    0    17  0.8  lcd_clear
+0      6   1    1    39  1.5  lcd_line
+0    126  23    1   426  1.9  sys_init
+0     21   4    0   426  1.9  @const542
+0     21   4    0    39  1.5  @const543
+0     50   9    2   197  2.1  MAIN
+0     21   4    0   193  2.1  @const547
+0     17   3    0   174  2.0  @const548
+0     21   4    3   212  3.0  @DIV88
+0     53  10    2   174  2.0  @PRINTF_U_525
+ Inline         0   212  3.0  @cinit1
+
+Program metrics:
+    Functions               18
+    Statements              130
+    Comments                171
+    Volume (V)              9276
+    Difficulty (D)          53.4
+    Effort to implement (E) 494930
+    Time to implement (T)   7 hours, 38 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   8
+    Maintainability (MI)    56
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-003FF   551  469  
+
+
+

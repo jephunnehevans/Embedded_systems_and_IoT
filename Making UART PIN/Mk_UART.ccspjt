@@ -1,0 +1,24 @@
+[PROJECT]
+Target=Mk_UART.hex
+Processor_Text=PIC16F84A
+CCSVerions=5.015
+Compiler=PCM
+CCSVersion=5.015
+[Target Data]
+FileList=Mk_UART.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Making UART PIN\Mk_UART]
+Type=4
+[mru-list]
+1=Mk_UART.c
+[Opened Files]
+1=Mk_UART.c
+2=Mk_UART.h
+3=16F84A.h
+4=
+[Mk_UART.c]
+Type=4
+[Units]
+Count=1
+1=Mk_UART (main)

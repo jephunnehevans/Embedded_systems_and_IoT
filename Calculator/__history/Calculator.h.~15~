@@ -1,0 +1,111 @@
+#include <16F876A.h>
+#include <stdlib.h>
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG,PROTECT
+#use delay(crystal=4000000)
+
+#define LCD_DATA_PORT getenv("SFR:PORTC")
+#define LCD_ENABLE_PIN  PIN_C3
+#define LCD_RS_PIN      PIN_C1
+#define LCD_RW_PIN      PIN_C2
+#define LCD_DATA4       PIN_C4
+#define LCD_DATA5       PIN_C5
+#define LCD_DATA6       PIN_C6
+#define LCD_DATA7       PIN_C7
+#include "lcd.c"
+
+void sys_init(){
+   output_a(0); output_b(0); output_c(0);
+   set_tris_b(0b00001111); set_tris_c(0);
+   output_a(0); output_b(0); output_c(0);
+   
+   PORT_B_PULLUPS(TRUE);
+   delay_ms(1000);
+   
+   lcd_init();
+   
+   lcd_putc('\f'); lcd_gotoxy(1,1);
+   printf(lcd_putc "   Calculator   ");
+   delay_ms(500);
+}
+
+unsigned int8 num1 = 0, num2 = 0;
+char sign = 0, n[2] = {'\o', '\o'};
+
+
+char scan_N(){
+   for(;;){
+      output_b(255);
+      output_low(pin_b4);
+      if(!input(pin_b0)){
+         while(!input(pin_b0)); return '7';
+      }
+      if(!input(pin_b1)){
+         while(!input(pin_b1)); return '4';
+      }
+      if(!input(pin_b2)){
+         while(!input(pin_b2)); return '1';
+      }
+   //!   if(!input(pin_b3)){
+   //!      while(!input(pin_b3)); return 'Z';
+   //!   }
+      
+      output_b(255);
+      output_low(pin_b5);
+      if(!input(pin_b0)){
+         while(!input(pin_b0)); return '8';
+      }
+      if(!input(pin_b1)){
+         while(!input(pin_b1)); return '5';
+      }
+      if(!input(pin_b2)){
+         while(!input(pin_b2)); return '2';
+      }
+      if(!input(pin_b3)){
+         while(!input(pin_b3)); return '0';
+      }
+      
+      output_b(255);
+      output_low(pin_b6);
+      if(!input(pin_b0)){
+         while(!input(pin_b0)); return '9';
+      }
+      if(!input(pin_b1)){
+         while(!input(pin_b1)); return '6';
+      }
+      if(!input(pin_b2)){
+         while(!input(pin_b2)); return '3';
+      }
+   //!   if(!input(pin_b3)){
+   //!      while(!input(pin_b3)); return '=';
+   //!   }
+   }
+}
+
+char scan_O(){
+   for(;;){
+      output_b(255);
+      output_low(pin_b7);
+      if(!input(pin_b0)){
+         while(!input(pin_b0)); return '/';
+      }
+      if(!input(pin_b1)){
+         while(!input(pin_b1)); return '*';
+      }
+      if(!input(pin_b2)){
+         while(!input(pin_b2)); return '-';
+      }
+      if(!input(pin_b3)){
+         while(!input(pin_b3)); return '+';
+      }
+   }
+}
+
+float calc(unsigned int8 a, b, char s){
+   if(s=='+') return a+b;
+   else if(s=='*') return a*b;
+   else if(s=='/') return a/b;
+   else if(s=='-') return a-b;
+}

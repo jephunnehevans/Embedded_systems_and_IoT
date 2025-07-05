@@ -1,0 +1,80 @@
+#include <16F876A.h>
+#use fast_io(a)
+#use fast_io(b)
+#use fast_io(c)
+#FUSES ,XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG,PROTECT
+#use delay(crystal=4000000)
+#use I2C(master, sda=pin_c4, scl=pin_c3, fast)
+
+#define LCD_DATA_PORT getenv("SFR:PORTB")
+#define LCD_ENABLE_PIN  PIN_B3
+#define LCD_RS_PIN      PIN_B1
+#define LCD_RW_PIN      PIN_B2
+#define LCD_DATA4       PIN_B4
+#define LCD_DATA5       PIN_B5
+#define LCD_DATA6       PIN_B6
+#define LCD_DATA7       PIN_B7
+#include "lcd.c"
+
+unsigned int8 hr=8, mn=50, sc=30, dy=4, dt=4, mt=6, yr=25;
+
+void lcd_cls(){
+   lcd_putc('\f');
+}
+
+void lcd_ln(unsigned int8 l){
+   lcd_gotoxy(1, l);
+}
+
+void sys_init(){
+   output_a(0); output_b(0); output_c(0);
+   set_tris_b(0), set_tris_c(0b00011000);
+   output_a(0); output_b(0); output_c(0);
+   
+   lcd_init(); lcd_cls(); lcd_ln(1);
+   printf(lcd_putc "botting...");
+   delay_ms(1000);
+}
+
+void data
+
+void RTC_write(unsigned int8 hr, mn, sc, dy, dt, mt, yr, sw){
+   i2c_start();
+   i2c_write(0x68);
+   
+   i2c_write(00);
+   i2c_write(sc);
+   i2c_write(01);
+   i2c_write(mn);
+   i2c_write(02);
+   i2c_write(hr);
+   i2c_write(02);
+   i2c_write(dy);
+   i2c_write(03);
+   i2c_write(dt);
+   i2c_write(04);
+   i2c_write(mt);
+   i2c_write(05);
+   i2c_write(yr);
+   i2c_write(06);
+   i2c_write(sw);
+   i2c_write(07);
+   i2c_write();
+   i2c_write(08);
+   
+   i22c_stop();
+}
+
+//!void RTC_Init(void){
+//!    I2C_Init();                             // Initialize the I2c module.
+//!    I2C_Start();                            // Start I2C communication
+//! 
+//!    I2C_Write(C_Ds1307WriteMode_U8);        // Connect to DS1307 by sending its ID on I2c Bus
+//!    I2C_Write(C_Ds1307ControlRegAddress_U8);// Select the Ds1307 ControlRegister to configure Ds1307
+//! 
+//!    I2C_Write(0x00);                        // Write 0x00 to Control register to disable SQW-Out
+//! 
+//!    I2C_Stop();                             // Stop I2C communication after initializing DS1307
+//!}
+
+

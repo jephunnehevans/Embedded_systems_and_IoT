@@ -1,0 +1,32 @@
+#include <16F84A.h>
+#FUSES XT,NOWDT,PUT,PROTECT
+#use delay(crystal=4000000)
+
+//!uint8_t pinState = PORTA;
+
+void sys_init(){
+   output_a(0); output_b(0);
+   set_tris_a(0); set_tris_b(0);
+   output_a(0); output_b(0);
+   
+   output_high(pin_a0);
+}
+
+void trafficLight(unsigned int8 rt, yt, gt){
+   output_high(pin_b1);
+   delay_ms(rt*1000);
+   output_low(pin_b1);
+   
+   output_high(pin_b2);
+   delay_ms(yt*1000);
+   output_low(pin_b2);
+   
+   output_high(pin_b3);
+   delay_ms(gt*1000);
+   output_low(pin_b3);
+   
+   output_high(pin_b2);
+   delay_ms(yt*1000);
+   output_low(pin_b2);
+}
+

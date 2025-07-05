@@ -1,0 +1,22 @@
+#include <UART.h>
+
+void main(){
+   sys_init();
+   putc(254); putc(1);
+   putc(254); putc(00);
+   printf("Typeing Something");
+   while(TRUE){
+//!      putc(254); putc(192);
+//!      printf("Typeing ... %u", x++);
+      
+      letterInput = getc(lcd);
+      putc(254); putc(192);
+      printf("ASCI: %u & Char: %c", letterInput, letterInput);
+      
+      fputc(lcd, " HERE \n%c", letterInput);
+//!      putc(254); putc(192);
+//!      printf("Character ...);
+//!      
+//!      pu
+   }
+}

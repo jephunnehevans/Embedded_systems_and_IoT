@@ -1,0 +1,162 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+004-005 @WRITE_PROGRAM_MEMORY8.P2
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     @TRIS_C
+021-022 @ITOF.P1
+021     lcd_init.i
+021     sys_init.@SCRATCH1
+021     @PSTRINGC7_626.@SCRATCH1
+021     MAIN.@SCRATCH1
+022-025 lcd_init.LCD_INIT_STRING
+022     @PSTRINGC7_626.@SCRATCH2
+022     MAIN.@SCRATCH2
+023     @PSTRINGC7_626.@SCRATCH3
+023     MAIN.@SCRATCH3
+024     @PSTRINGC7_626.@SCRATCH4
+024     MAIN.@SCRATCH4
+025-028 showTemp.temp
+026     lcd_init.@SCRATCH1
+029-02C @PRINTF_L32D_626FPFPFR.P1
+029-02C @SFTOI.P2
+029     showTemp.@SCRATCH1
+02A     tempCtrl.tempVal
+02B-031 tempCtrl.state
+02D     @PRINTF_L32D_626FPFPFR.P1
+02E     @PRINTF_L32D_626FPFPFR.@SCRATCH1
+02F     @PRINTF_L32D_626FPFPFR.@SCRATCH2
+030     @PRINTF_L32D_626FPFPFR.@SCRATCH3
+031     @PRINTF_L32D_626FPFPFR.@SCRATCH4
+032     @PSTRINGCN7_626.P1
+032     tempCtrl.@SCRATCH1
+032     @PSTRINGR_626.@SCRATCH1
+032     @PRINTF_L32D_626FPFPFR.@SCRATCH5
+033     tempCtrl.@SCRATCH2
+033     @PSTRINGCN7_626.@SCRATCH1
+033     @PSTRINGR_626.@SCRATCH2
+033     @PRINTF_L32D_626FPFPFR.@SCRATCH6
+034     @PSTRINGCN7_626.@SCRATCH2
+034     @PRINTF_L32D_626FPFPFR.@SCRATCH7
+035     @PSTRINGCN7_626.@SCRATCH3
+035     @PRINTF_L32D_626FPFPFR.@SCRATCH8
+036     lcd_putc.c
+036-039 @ADDFF.P1
+036-039 @DIV3232.P2
+036-039 @MULFF.P3
+036-039 @FTOSD.P4
+036     @PSTRINGCN7_626.@SCRATCH4
+037     @delay_ms1.P1
+037     lcd_gotoxy.x
+038     lcd_gotoxy.y
+039     lcd_gotoxy.address
+03A-03D @ADDFF.P1
+03A-03D @DIV3232.P2
+03A-03D @MULFF.P3
+03A     lcd_gotoxy.@SCRATCH1
+03A     @FTOSD.@SCRATCH1
+03B     lcd_send_byte.address
+03C     lcd_send_byte.n
+03D     lcd_read_byte.low
+03D     lcd_send_byte.@SCRATCH1
+03E     lcd_send_nibble.n
+03E     lcd_read_byte.high
+03E     @MULFF.@SCRATCH1
+03E     @ADDFF.@SCRATCH1
+03E     @DIV3232.@SCRATCH1
+03F     lcd_read_nibble.n
+03F     lcd_read_byte.@SCRATCH1
+03F     @MULFF.@SCRATCH2
+03F     @ADDFF.@SCRATCH2
+03F     @DIV3232.@SCRATCH2
+040     lcd_read_nibble.@SCRATCH1
+040     @MULFF.@SCRATCH3
+040     @ADDFF.@SCRATCH3
+040     @DIV3232.@SCRATCH3
+041     @MULFF.@SCRATCH4
+041     @ADDFF.@SCRATCH4
+041     @DIV3232.@SCRATCH4
+042     @MULFF.@SCRATCH5
+042     @ADDFF.@SCRATCH5
+042     @DIV3232.@SCRATCH5
+043     @ADDFF.@SCRATCH6
+044     @ADDFF.@SCRATCH7
+045     @ADDFF.@SCRATCH8
+077     @SCRATCH
+078     @SCRATCH
+078     _RETURN_
+079     @SCRATCH
+07A     @SCRATCH
+09C.6   C1OUT
+09C.7   C2OUT
+10D-10E @WRITE_PROGRAM_MEMORY8.P1
+10D-10E @READ_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @const645.call
+00000F  @const646.call
+00001A  @const639.call
+000023  @const641.call
+00002C  @const647.call
+000031  @const653.call
+000038  @delay_ms1
+00004D  lcd_send_nibble
+000066  lcd_read_nibble
+00008B  lcd_send_byte
+00009B  lcd_read_byte
+0000E6  lcd_gotoxy
+0000F8  lcd_putc
+000124  @PSTRINGC7_626
+00017A  sys_init
+00019B  lcd_init
+000215  @ITOF
+000234  @PSTRINGCN7_626
+00028B  @DIV3232
+0002DA  @PRINTF_L32D_626FPFPFR
+0002EE  @MULFF
+000384  @ADDFF
+0004D4  @FTOSD
+00058F  showTemp
+0005BE  @SFTOI
+0005E0  tempCtrl
+00061F  @PSTRINGR_626
+00063E  MAIN
+00063E  @cinit1
+00064A  @cinit2
+
+Project Directory:
+    C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Digital thermometer\
+
+Project Files:
+    Dig_therm.c                                             [19-May-25 16:45  CRC=00000000]
+    Dig_therm.h                                             [19-May-25 16:44  CRC=779A42EB]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F876A.h [12-Nov-13 14:35  CRC=7FE1E080]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c [19-Sep-13 15:38  CRC=D1A6378A]
+
+Source signature=9AC8927F
+
+Units:
+    Dig_therm (main)
+
+Compiler Settings:
+    Processor:      PIC16F876A
+    Pointer Size:   16
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   Dig_therm.xsym
+    Errors:      Dig_therm.err
+    Ext Symbols: Dig_therm.esym
+    INHX8:       Dig_therm.hex
+    Symbols:     Dig_therm.sym
+    List:        Dig_therm.lst
+    Debug/COFF:  Dig_therm.cof
+    Project:     Dig_therm.ccspjt
+    Call Tree:   Dig_therm.tre
+    Statistics:  Dig_therm.STA

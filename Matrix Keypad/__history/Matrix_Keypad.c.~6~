@@ -1,0 +1,9 @@
+#include <Matrix_Keypad.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      output_b(0); output_high(pin_b0)
+      
+   }
+}

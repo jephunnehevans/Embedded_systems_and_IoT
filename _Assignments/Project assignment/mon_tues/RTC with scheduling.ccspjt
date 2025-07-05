@@ -1,0 +1,26 @@
+[PROJECT]
+Target=RTC with scheduling.hex
+Processor_Text=PIC16F876A
+CCSVerions=5.015
+Compiler=PCM
+CCSVersion=5.015
+[Target Data]
+FileList=RTC with scheduling.c
+[Directories]
+Include=C:\Program Files (x86)\PICC\Devices\;C:\Program Files (x86)\PICC\Drivers\
+[C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\Assignments\Project assignment\mon_tues\RTC with scheduling]
+Type=4
+[mru-list]
+1=RTC with scheduling.c
+[Opened Files]
+1=RTC with scheduling.c
+2=RTC with scheduling.h
+3=..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F876A.h
+4=..\..\..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\lcd.c
+5=..\..\..\Bidirectonal Solartracker\Solartracker.c
+6=
+[RTC with scheduling.c]
+Type=4
+[Units]
+Count=1
+1=RTC with scheduling (main)

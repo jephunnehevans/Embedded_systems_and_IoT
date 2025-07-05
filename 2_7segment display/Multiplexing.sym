@@ -1,0 +1,64 @@
+004-005 @READ_PROGRAM_MEMORY8.P1
+009-00A @READ_PROGRAM_MEMORY8.P1
+00C     @SCRATCH
+00D     @SCRATCH
+00D     _RETURN_
+00E     @SCRATCH
+00F     @SCRATCH
+010     @INTERRUPT_AREA
+011     @INTERRUPT_AREA
+012     @INTERRUPT_AREA
+013     @INTERRUPT_AREA
+014     @INTERRUPT_AREA
+015     @INTERRUPT_AREA
+016     @INTERRUPT_AREA
+017     @INTERRUPT_AREA
+018     counter
+019.0   flag
+01A     @DIV88.P1
+01A     isrtimer0.@SCRATCH1
+01B     @DIV88.P1
+01B     display.digit
+01C-026 display.nums
+01C     @DIV88.@SCRATCH1
+
+ROM Allocation:
+000036  @DIV88
+00004B  display
+000066  isrtimer0
+00008C  sys_init
+0000A2  MAIN
+0000A2  @cinit1
+0000A7  @cinit2
+
+Project Directory:
+    C:\Users\Dr (Mrs.) Evans\Documents\AUL\300 level\SIWES\OPSTEP\2_7segment display\
+
+Project Files:
+    Multiplexing.c                                          [22-May-25 09:14  CRC=D8102B21]
+    Multiplexing.h                                          [22-May-25 09:17  CRC=6F17B5E4]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F84A.h [12-Nov-13 14:34  CRC=4E09ACDB]
+
+Source signature=E33B3ABB
+
+Units:
+    Multiplexing (main)
+
+Compiler Settings:
+    Processor:      PIC16F84A
+    Pointer Size:   8
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   Multiplexing.xsym
+    Errors:      Multiplexing.err
+    Ext Symbols: Multiplexing.esym
+    INHX8:       Multiplexing.hex
+    Symbols:     Multiplexing.sym
+    List:        Multiplexing.lst
+    Debug/COFF:  Multiplexing.cof
+    Project:     Multiplexing.ccspjt
+    Call Tree:   Multiplexing.tre
+    Statistics:  Multiplexing.STA

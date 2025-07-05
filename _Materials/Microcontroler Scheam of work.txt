@@ -1,0 +1,24 @@
+
+Quick Introduction to C
+- names
+-preprocessors
+-fundamental Datatypes
+-promotion, conversion and carts
+constants
+operations
+comments
+comme operator
+precedence
+variable scope
+variable storage class
+control structures
+constants and volatile qualifiers
+Arrays, Strings control & pointers
+odds 'n' ends
+error functions
+strings and meaning functions
+formatted printing functions
+printf() Examples and Demonstration
+characters processing functions
+standard input output function
+sorting and serching function

@@ -1,0 +1,28 @@
+#include <16F876A.h>
+#device ADC=8
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG,PROTECT
+#use delay(crystal=4000000)
+#use rs232(UART1)
+
+void sys_init(){
+   output_a(0); output_b(0);  output_c(0);
+   set_tris_a(0b111111);
+   set_tris_b(0); set_tris_c(0b11110000);
+   output_a(0); output_b(0);  output_c(0);
+   
+   SETUP_TIMER_1(T1_INTERNAL | T1_CLK_OUT | T1_DIV_BY_1);
+   SET_TIMER1(230);
+   
+   CLEAR_INTERRUPT(INT_TIMER0);
+   ENABLE_INTERRUPTS(INT_TIMER0);
+   ENABLE_INTERRUPTS(GLOBAL);
+   
+   setup_uart(9600);
+   delay_ms(1000);
+   
+   putc(254); putc(1);
+   putc(254); putc(00);
+   printf("Welcome");
+   delay_ms(1000);
+}
+

@@ -1,0 +1,14 @@
+#include <16F876A.h>
+#device ADC=16
+#FUSES XT,NOWDT,PUT,NOBROWNOUT,NOLVP,CPD,NOWRT,NODEBUG,PROTECT
+#use delay(crystal=4000000)
+
+#include LCD
+
+void sys_init(){
+   output_a(0b111111);
+   output_b(0b00000000);
+   output_c(0b00000000);
+   
+}
+

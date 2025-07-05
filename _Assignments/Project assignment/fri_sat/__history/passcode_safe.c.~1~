@@ -1,0 +1,11 @@
+#include <passcode_safe.h>
+
+void main()
+{
+
+	while(TRUE)
+	{
+		//TODO: User Code
+	}
+
+}

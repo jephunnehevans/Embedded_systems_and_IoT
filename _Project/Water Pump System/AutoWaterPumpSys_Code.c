@@ -1,0 +1,17 @@
+#include <AutoWaterPumpSys_Code.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      Trig();
+      while(!input(pin_a0));
+      set_Timer0(0);
+      while(input(pin_a0));
+      dist = get_timer0();
+      dist = (dist * 0.000001 * 256);
+      dist = ((0.034 * dist)/2);
+      dist = dist * 1000000;
+      lcd_putc('\f'); lcd_gotoxy(1, 2);
+      printf(lcd_putc "Distance = %f" dist);
+   }
+}

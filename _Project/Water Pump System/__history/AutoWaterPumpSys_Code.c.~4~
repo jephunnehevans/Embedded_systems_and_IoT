@@ -1,0 +1,10 @@
+#include <AutoWaterPumpSys_Code.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      Trig();
+      dist = Distance_meter();
+      printf(lcd_putc "Distance = %f" dist);
+   }
+}
