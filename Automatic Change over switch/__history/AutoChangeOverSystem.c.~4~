@@ -1,0 +1,18 @@
+#include <AutoChangeOverSystem.h>
+
+void main(){
+   sys_init();
+   while(TRUE){
+      SET_ADC_CHANNEL(0);
+      Vn = READ_ADC();
+      SET_ADC_CHANNEL(1);
+      Vg = READ_ADC();
+      SET_ADC_CHANNEL(2);
+      I = READ_ADC();
+      lcd_cls(); lcd_ln(1);
+      printf(lcd_putc "Vn = %ld, Vg = %ld", Vn, Vg);
+      lcd_ln(2);
+      printf(lcd_putc "I = %d", I);
+      delay_ms(1000); 
+   }
+}

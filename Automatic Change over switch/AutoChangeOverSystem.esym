@@ -1,8 +1,8 @@
 D G "lcd_rw_tris" 3 129 "()  output_drive(LCD_RW_PIN)"
 D G "__PCM__" 3 137 ""5.015""
 D G "__DEVICE__" 3 137 "876"
-D G "__DATE__" 3 137 ""19-Jun-25""
-D G "__TIME__" 3 137 ""16:15:38"" "Standard Header file for the PIC16F876A device ////////////////"
+D G "__DATE__" 3 137 ""08-Jul-25""
+D G "__TIME__" 3 137 ""21:20:36"" "Standard Header file for the PIC16F876A device ////////////////"
 c L "set_tris_a" 2 3 6 "FUNCTION"
 v L "value" 2 37 "int8" `54 
 f B "set_tris_a" 2 37 "void(int8 value)" `53 
@@ -757,7 +757,7 @@ D G "lcd_rw_tris" 3 129 "()  output_drive(LCD_RW_PIN)"
 D G "LCD_TYPE" 3 179 "2" "0=5x7, 1=5x10, 2=2 lines"
 D G "LCD_LINE_TWO" 3 183 "0x40" "LCD RAM address for the second line"
 D G "LCD_LINE_LENGTH" 3 187 "20"
-f G "lcd_read_nibble" 3 190 "int8(int8 LCD_LINE_LENGTH)" `608 
+f G "lcd_read_nibble" 3 190 "int8()" `608 
 F G "lcd_read_byte" 3 193 "int8()" `609 
 V L "low" 3 194 "int8" `610 
 V L "high" 3 194 "int8" `611 
@@ -769,34 +769,40 @@ F G "lcd_send_nibble" 3 257 "void(int8 n)" `613
 C L "lcd_send_nibble" 3 2 1 "FUNCTION"
 V L "address" 3 274 "int8" `616 
 V L "n" 3 274 "int8" `617 
-F G "lcd_send_byte" 3 275 "void(int8 address,int8 n,int8 address,int8 low)" `615 
-F G "lcd_init" 3 300 "void(int8 low)" `618 
+F G "lcd_send_byte" 3 275 "void(int8 address,int8 n)" `615 
+F G "lcd_init" 3 300 "void()" `618 
 V L "i" 3 301 "int8" `619 
 V L "LCD_INIT_STRING" 3 302 "int8[4]" `620 
 C L "lcd_init" 3 2 2 "FUNCTION"
 V L "x" 3 345 "int8" `622 
 V L "y" 3 345 "int8" `623 
-F G "lcd_gotoxy" 3 346 "void(int8 x,int8 y,int8 x,int8 lcd_init)" `621 
+F G "lcd_gotoxy" 3 346 "void(int8 x,int8 y)" `621 
 V L "address" 3 347 "int8" `624 
 V L "c" 3 363 "int8" `626 
 F G "lcd_putc" 3 364 "void(int8 c)" `625 
 V L "x" 3 406 "int8" `628 
 V L "y" 3 406 "int8" `629 
-F G "lcd_getc" 3 407 "int8(int8 x,int8 y,int8 x,int8 lcd_init)" `627 
+F G "lcd_getc" 3 407 "int8(int8 x,int8 y)" `627 
 V L "value" 3 408 "int8" `630 
 C L "lcd_getc" 3 2 1 "FUNCTION"
 C L "lcd_set_cgram_char" 3 2 5 "FUNCTION"
 V L "which" 3 424 "int8" `632 
 V L "ptr" 3 424 "*int8" `633 
-F G "lcd_set_cgram_char" 3 425 "void(int8 which,*int8 ptr,int8 lcd_putc,*int8 c)" `631 
+F G "lcd_set_cgram_char" 3 425 "void(int8 which,*int8 ptr)" `631 
 V L "i" 3 426 "int8" `634 
 C L "lcd_set_cgram_char" 3 2 1 "FUNCTION"
 V L "on" 3 443 "int8" `636 
 F G "lcd_cursor_on" 3 444 "void(int8 on)" `635 
 C L "lcd_cursor_on" 3 2 1 "FUNCTION"
 C L "lcd_cursor_on" 3 2 1 "FUNCTION"
-F G "sys_init" 1 19 "void(int8 lcd_set_cgram_char)" `637 
-F G "MAIN" 0 3 "void()" `638 
+V G "i" 1 19 "int8" `637 
+V G "Vn" 1 20 "int16" `638 
+V G "Vg" 1 20 "int16" `639 
+F G "lcd_cls" 1 22 "void()" `640 
+V L "l" 1 26 "int8" `642 
+F G "lcd_ln" 1 26 "void(int8 l)" `641 
+F G "sys_init" 1 30 "void()" `643 
+F G "MAIN" 0 3 "void()" `647 
 F B "reset_cpu" 0 0
 F B "abs" 1 0
 F B "sleep" 0 0

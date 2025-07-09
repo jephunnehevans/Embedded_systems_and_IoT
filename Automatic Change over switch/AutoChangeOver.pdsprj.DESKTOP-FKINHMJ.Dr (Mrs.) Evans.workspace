@@ -94,7 +94,7 @@
    <POPUP w="14" x="208" flags="00000008" y="269" h="8" pid="7" iid="1">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="8" x="228" flags="00000000" y="289" h="8" pid="8" iid="1">
+   <POPUP w="8" x="228" flags="00000002" y="289" h="8" pid="8" iid="1">
     <PROPERTIES>
      <ITEM name="DataType">2</ITEM>
      <ITEM name="DispChars">Yes</ITEM>
@@ -104,10 +104,10 @@
      <ITEM name="TopLineAddress">00000000</ITEM>
     </PROPERTIES>
    </POPUP>
-   <POPUP w="600" x="248" flags="0000000b" y="309" h="400" pid="1" iid="1">
+   <POPUP w="795" x="248" flags="0000800b" y="309" h="400" pid="1" iid="1">
     <PROPERTIES/>
    </POPUP>
-   <POPUP w="300" x="268" flags="0000000b" y="329" h="300" pid="2" iid="1">
+   <POPUP w="300" x="1033" flags="0000000b" y="340" h="300" pid="2" iid="1">
     <PROPERTIES>
      <ITEM name="Address Column Width">94</ITEM>
      <ITEM name="AutoResize">No</ITEM>

@@ -16,6 +16,17 @@
 #define LCD_DATA7       PIN_B7
 #include "lcd.c"
 
+unsigned int8 I = 0;
+unsigned int16 Vn = 0, Vg = 0;
+
+void lcd_cls(){
+   lcd_putc('\f');
+}
+
+void lcd_ln(l){
+   lcd_gotoxy(1, l);
+}
+
 void sys_init(){
    output_a(0); output_b(0); output_c(0);
    set_tris_a(0b111111); set_tris_b(128); set_tris_c(0b00111100);
@@ -24,6 +35,10 @@ void sys_init(){
    SETUP_ADC(ADC_CLOCK_INTERNAL);
    SETUP_ADC_PORTS(AN0_AN1_AN2_AN4_VSS_VREF);
    
-   lcd_init();
+   lcd_init(); lcd_cls(); lcd_ln(1);
+   lcd_putc("    Automatic");
+   lcd_ln(2);
+   lcd_putc("   Change Over");
+   delay_ms(1000);
 }
 
